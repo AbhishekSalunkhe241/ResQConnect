@@ -18,6 +18,7 @@ import NotFound from '../pages/NotFound';
 import CitizenDashboard from '../pages/citizen/CitizenDashboard';
 import RequestHelp from '../pages/citizen/RequestHelp';
 import MyRequests from '../pages/citizen/MyRequests';
+import RequestDetails from '../pages/citizen/RequestDetails';
 import Notifications from '../pages/citizen/Notifications';
 import Profile from '../pages/citizen/Profile';
 
@@ -52,6 +53,7 @@ export const AppRoutes = () => {
         <Route index element={<CitizenDashboard />} />
         <Route path="request-help" element={<RequestHelp />} />
         <Route path="requests" element={<MyRequests />} />
+        <Route path="requests/:id" element={<RequestDetails />} />
         <Route path="notifications" element={<Notifications />} />
         <Route path="profile" element={<Profile />} />
       </Route>

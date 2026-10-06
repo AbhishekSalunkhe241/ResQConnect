@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { 
   PlusCircle, 
   Search, 
@@ -7,43 +7,69 @@ import {
   Truck, 
   CheckCircle2, 
   MapPin, 
-  AlertCircle, 
   ArrowRight, 
   Building2, 
-  ChevronRight,
-  Filter,
-  Layers,
-  HeartHandshake,
-  Compass,
-  FileText
+  ChevronRight, 
+  Layers, 
+  HeartHandshake, 
+  Compass 
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
+import { useRequests } from '../../context/RequestContext';
 import StatCard from '../../components/StatCard';
 import Card from '../../components/Card';
 import Button from '../../components/Button';
 import Badge from '../../components/Badge';
 import StatusBadge from '../../components/StatusBadge';
-import Modal from '../../components/Modal';
-import { mockRequests } from '../../data/mockRequests';
 
 export const CitizenDashboard = () => {
+  const navigate = useNavigate();
   const { currentUser } = useAuth();
-  const [selectedRequest, setSelectedRequest] = useState(null);
+  const { requests, stats } = useRequests();
+
   const [filterCategory, setFilterCategory] = useState('All');
 
   const userName = currentUser?.name || 'Rahul Sharma';
 
-  // Demo stats as specified in prompt section 10
-  const stats = [
-    { title: 'Active Requests', value: '2', subtext: 'Requiring fulfillment', icon: <Layers size={22} />, scheme: 'blue' },
-    { title: 'Under Verification', value: '1', subtext: 'Desk review in progress', icon: <Search size={22} />, scheme: 'amber' },
-    { title: 'In Progress', value: '1', subtext: 'Assistance dispatched', icon: <Truck size={22} />, scheme: 'teal' },
-    { title: 'Completed', value: '3', subtext: 'Dignified handovers done', icon: <CheckCircle2 size={22} />, scheme: 'green' }
+  // Dynamic statistics calculated from current frontend state (Section 19)
+  const dashboardStats = [
+    { 
+      title: 'Active Requests', 
+      value: stats.active.toString(), 
+      subtext: 'Requiring fulfillment', 
+      icon: <Layers size={22} />, 
+      scheme: 'blue' 
+    },
+    { 
+      title: 'Under Verification', 
+      value: stats.underVerification.toString(), 
+      subtext: 'Desk review in progress', 
+      icon: <Search size={22} />, 
+      scheme: 'amber' 
+    },
+    { 
+      title: 'In Progress', 
+      value: stats.inProgress.toString(), 
+      subtext: 'Assistance dispatched', 
+      icon: <Truck size={22} />, 
+      scheme: 'teal' 
+    },
+    { 
+      title: 'Completed', 
+      value: stats.completed.toString(), 
+      subtext: 'Dignified handovers done', 
+      icon: <CheckCircle2 size={22} />, 
+      scheme: 'green' 
+    }
   ];
 
+  // Filter requests for recent list
   const filteredRequests = filterCategory === 'All'
-    ? mockRequests
-    : mockRequests.filter(r => r.category.toLowerCase().includes(filterCategory.toLowerCase()));
+    ? requests
+    : requests.filter(r => r.category.toLowerCase().includes(filterCategory.toLowerCase()));
+
+  // Display top 5 recent requests
+  const recentRequests = filteredRequests.slice(0, 5);
 
   return (
     <div className="citizen-dashboard animate-fade-in" style={{ maxWidth: '1180px', margin: '0 auto' }}>
@@ -70,7 +96,7 @@ export const CitizenDashboard = () => {
             <h1 style={{ fontSize: '1.65rem', fontWeight: 800, color: 'var(--color-navy-900)' }}>
               Good morning, {userName}
             </h1>
-            <Badge variant="teal">Panvel Zone</Badge>
+            <Badge variant="teal">{currentUser?.location?.split(',')[0] || 'Panvel Zone'}</Badge>
           </div>
           <p className="text-muted" style={{ margin: 0, fontSize: '0.95rem' }}>
             Track your recovery requests and connect with available assistance.
@@ -90,10 +116,10 @@ export const CitizenDashboard = () => {
       </div>
 
       {/* =========================================================================
-          FOUR STAT CARDS (SECTION 10)
+          FOUR DYNAMIC STAT CARDS (SECTION 19)
           ========================================================================= */}
       <div className="grid grid-cols-4 lg-grid-cols-2 md-grid-cols-1 gap-4" style={{ marginBottom: '2.5rem' }}>
-        {stats.map((s, idx) => (
+        {dashboardStats.map((s, idx) => (
           <StatCard
             key={idx}
             title={s.title}
@@ -106,7 +132,7 @@ export const CitizenDashboard = () => {
       </div>
 
       {/* =========================================================================
-          QUICK ACTIONS SECTION (SECTION 12)
+          QUICK ACTIONS SECTION
           ========================================================================= */}
       <div style={{ marginBottom: '2.5rem' }}>
         <div className="flex items-center justify-between" style={{ marginBottom: '1rem' }}>
@@ -248,7 +274,7 @@ export const CitizenDashboard = () => {
       </div>
 
       {/* =========================================================================
-          RECENT REQUESTS SECTION (SECTION 11)
+          RECENT REQUESTS SECTION (SECTION 20)
           ========================================================================= */}
       <div>
         <div className="flex items-center justify-between flex-wrap gap-2" style={{ marginBottom: '1rem' }}>
@@ -257,34 +283,42 @@ export const CitizenDashboard = () => {
               Recent Recovery Requests
             </h2>
             <p className="text-xs text-muted" style={{ marginTop: '0.15rem' }}>
-              Fictional demo requests illustrating real-world post-disaster tracking
+              Real-time state reflecting your submitted recovery requests
             </p>
           </div>
 
-          <div className="flex items-center gap-2">
-            <span className="text-xs text-muted font-medium">Category:</span>
-            <select
-              value={filterCategory}
-              onChange={(e) => setFilterCategory(e.target.value)}
-              className="form-select text-xs"
-              style={{ padding: '0.35rem 0.65rem', borderRadius: 'var(--radius-md)' }}
-            >
-              <option value="All">All Categories</option>
-              <option value="Water">Water & Food</option>
-              <option value="Medical">Medical</option>
-              <option value="Shelter">Shelter</option>
-              <option value="Sanitation">Sanitation</option>
-            </select>
+          <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2">
+              <span className="text-xs text-muted font-medium">Category:</span>
+              <select
+                value={filterCategory}
+                onChange={(e) => setFilterCategory(e.target.value)}
+                className="form-select text-xs"
+                style={{ padding: '0.35rem 0.65rem', borderRadius: 'var(--radius-md)' }}
+              >
+                <option value="All">All Categories</option>
+                <option value="Food & Water">Food & Water</option>
+                <option value="Medical">Medical</option>
+                <option value="Shelter">Shelter</option>
+                <option value="Household">Household Supplies</option>
+                <option value="Transportation">Transportation</option>
+              </select>
+            </div>
+
+            <Button to="/citizen/requests" variant="ghost" size="sm" iconRight={<ArrowRight size={14} />}>
+              View All ({requests.length})
+            </Button>
           </div>
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-          {filteredRequests.map((req) => (
+          {recentRequests.map((req) => (
             <Card
               key={req.id}
               hoverable
-              onClick={() => setSelectedRequest(req)}
+              onClick={() => navigate(`/citizen/requests/${req.id}`)}
               className="request-list-card"
+              style={{ cursor: 'pointer' }}
             >
               <div className="flex items-start justify-between gap-4 md-flex-col">
                 <div style={{ flex: 1 }}>
@@ -295,7 +329,7 @@ export const CitizenDashboard = () => {
                     </span>
                     <Badge variant="slate">{req.category}</Badge>
                     <StatusBadge status={req.status} />
-                    <Badge variant={req.priority === 'High' ? 'red' : req.priority === 'Medium' ? 'amber' : 'slate'}>
+                    <Badge variant={req.priority === 'Critical' ? 'red' : req.priority === 'High' ? 'amber' : 'slate'}>
                       {req.priority} Priority
                     </Badge>
                   </div>
@@ -313,7 +347,7 @@ export const CitizenDashboard = () => {
                   <div className="flex items-center gap-4 flex-wrap text-xs text-muted">
                     <span className="flex items-center gap-1">
                       <MapPin size={14} style={{ color: 'var(--text-light)' }} />
-                      <span>{req.location}</span>
+                      <span>{req.addressDetails?.city ? `${req.addressDetails.city}, ${req.addressDetails.state}` : req.location}</span>
                     </span>
 
                     {req.assignedOrganization && (
@@ -330,145 +364,34 @@ export const CitizenDashboard = () => {
                 {/* View Details Action */}
                 <div className="flex items-center gap-2" style={{ alignSelf: 'center' }}>
                   <Button
+                    to={`/citizen/requests/${req.id}`}
                     variant="secondary"
                     size="sm"
                     iconRight={<ChevronRight size={16} />}
                     onClick={(e) => {
                       e.stopPropagation();
-                      setSelectedRequest(req);
+                      navigate(`/citizen/requests/${req.id}`);
                     }}
                   >
-                    View Timeline
+                    View Details
                   </Button>
                 </div>
               </div>
             </Card>
           ))}
+
+          {recentRequests.length === 0 && (
+            <Card>
+              <div style={{ textAlign: 'center', padding: '2rem 1rem' }}>
+                <p className="text-muted text-sm">No requests found in this category.</p>
+                <Button to="/citizen/request-help" variant="primary" size="sm" style={{ marginTop: '0.75rem' }}>
+                  Submit First Request
+                </Button>
+              </div>
+            </Card>
+          )}
         </div>
       </div>
-
-      {/* =========================================================================
-          REQUEST TIMELINE & DETAILS MODAL
-          ========================================================================= */}
-      {selectedRequest && (
-        <Modal
-          isOpen={!!selectedRequest}
-          onClose={() => setSelectedRequest(null)}
-          title={`Request Timeline — #${selectedRequest.id}`}
-          maxWidth="620px"
-          footer={
-            <Button onClick={() => setSelectedRequest(null)} variant="primary">
-              Close Overview
-            </Button>
-          }
-        >
-          <div>
-            <div className="flex items-center justify-between gap-2 flex-wrap" style={{ marginBottom: '1.25rem' }}>
-              <div>
-                <span className="text-xs font-semibold text-muted">Category</span>
-                <p className="font-bold text-sm" style={{ color: 'var(--color-navy-900)' }}>{selectedRequest.category}</p>
-              </div>
-              <div>
-                <span className="text-xs font-semibold text-muted">Status</span>
-                <div><StatusBadge status={selectedRequest.status} /></div>
-              </div>
-              <div>
-                <span className="text-xs font-semibold text-muted">Location</span>
-                <p className="text-sm font-medium">{selectedRequest.location}</p>
-              </div>
-            </div>
-
-            <div
-              style={{
-                backgroundColor: 'var(--bg-muted)',
-                padding: '1rem',
-                borderRadius: 'var(--radius-md)',
-                marginBottom: '1.5rem',
-                border: '1px solid var(--border-subtle)'
-              }}
-            >
-              <h4 style={{ fontSize: '0.9rem', fontWeight: 700, marginBottom: '0.35rem' }}>Requested Relief Items:</h4>
-              <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.35rem', fontSize: '0.85rem' }}>
-                {selectedRequest.itemsNeeded?.map((item, idx) => (
-                  <li key={idx} className="flex items-center justify-between">
-                    <span>{item.item}</span>
-                    <strong style={{ color: 'var(--color-navy-900)' }}>Qty: {item.qty}</strong>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {selectedRequest.assignedOrganization && (
-              <div
-                style={{
-                  backgroundColor: '#F0FDFA',
-                  border: '1px solid #99F6E4',
-                  borderRadius: 'var(--radius-md)',
-                  padding: '1rem',
-                  marginBottom: '1.5rem'
-                }}
-              >
-                <div className="flex items-center gap-2" style={{ marginBottom: '0.25rem' }}>
-                  <Building2 size={16} style={{ color: 'var(--color-teal-600)' }} />
-                  <span style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--color-teal-700)' }}>
-                    {selectedRequest.assignedOrganization.name}
-                  </span>
-                  <Badge variant="teal" style={{ fontSize: '0.65rem' }}>
-                    {selectedRequest.assignedOrganization.badge}
-                  </Badge>
-                </div>
-                <p className="text-xs text-muted" style={{ margin: 0 }}>
-                  Contact: {selectedRequest.assignedOrganization.contactPerson} ({selectedRequest.assignedOrganization.phone})
-                </p>
-              </div>
-            )}
-
-            {/* Timeline Milestones */}
-            <div>
-              <h4 style={{ fontSize: '0.95rem', fontWeight: 700, marginBottom: '0.75rem' }}>
-                Verification & Coordination Milestones:
-              </h4>
-
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', position: 'relative' }}>
-                {selectedRequest.timeline?.map((step, idx) => (
-                  <div key={idx} className="flex items-start gap-3">
-                    <div
-                      style={{
-                        width: '26px',
-                        height: '26px',
-                        borderRadius: '50%',
-                        backgroundColor: 'var(--color-primary-50)',
-                        color: 'var(--color-primary-600)',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        flexShrink: 0,
-                        fontSize: '0.75rem',
-                        fontWeight: 700,
-                        border: '1px solid var(--color-primary-200)'
-                      }}
-                    >
-                      {idx + 1}
-                    </div>
-
-                    <div style={{ flex: 1, paddingBottom: '0.5rem', borderBottom: idx < selectedRequest.timeline.length - 1 ? '1px solid var(--border-subtle)' : 'none' }}>
-                      <div className="flex items-center justify-between">
-                        <span style={{ fontSize: '0.875rem', fontWeight: 700, color: 'var(--color-navy-900)' }}>
-                          {step.step}
-                        </span>
-                        <span className="text-xs text-muted">{step.timestamp}</span>
-                      </div>
-                      <p className="text-xs text-muted" style={{ marginTop: '0.2rem', margin: 0 }}>
-                        {step.note}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </Modal>
-      )}
     </div>
   );
 };

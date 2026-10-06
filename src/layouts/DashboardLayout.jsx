@@ -15,11 +15,13 @@ import {
   ShieldCheck
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
+import { useRequests } from '../context/RequestContext';
 import Badge from '../components/Badge';
 
 export const DashboardLayout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const { currentUser, role, logout, switchRole } = useAuth();
+  const { unreadNotificationsCount } = useRequests();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -32,12 +34,15 @@ export const DashboardLayout = () => {
     { name: 'Dashboard', path: '/citizen', icon: <LayoutDashboard size={18} />, exact: true },
     { name: 'Request Help', path: '/citizen/request-help', icon: <PlusCircle size={18} /> },
     { name: 'My Requests', path: '/citizen/requests', icon: <FileText size={18} /> },
-    { name: 'Notifications', path: '/citizen/notifications', icon: <Bell size={18} />, count: 2 },
+    { name: 'Notifications', path: '/citizen/notifications', icon: <Bell size={18} />, count: unreadNotificationsCount > 0 ? unreadNotificationsCount : null },
     { name: 'Profile', path: '/citizen/profile', icon: <User size={18} /> },
   ];
 
   // Get current page title dynamically
   const getPageTitle = () => {
+    if (location.pathname.startsWith('/citizen/requests/')) {
+      return 'Request Details';
+    }
     const current = navItems.find(item => 
       item.exact ? location.pathname === item.path : location.pathname.startsWith(item.path)
     );
@@ -311,22 +316,24 @@ export const DashboardLayout = () => {
                 color: 'var(--color-navy-800)',
                 display: 'flex'
               }}
-              title="2 Unread Notifications"
+              title={`${unreadNotificationsCount} Unread Notifications`}
               aria-label="Notifications"
             >
               <Bell size={20} />
-              <span
-                style={{
-                  position: 'absolute',
-                  top: '4px',
-                  right: '4px',
-                  width: '8px',
-                  height: '8px',
-                  borderRadius: '50%',
-                  backgroundColor: 'var(--color-danger-main)',
-                  border: '2px solid #FFF'
-                }}
-              />
+              {unreadNotificationsCount > 0 && (
+                <span
+                  style={{
+                    position: 'absolute',
+                    top: '4px',
+                    right: '4px',
+                    width: '8px',
+                    height: '8px',
+                    borderRadius: '50%',
+                    backgroundColor: 'var(--color-danger-main)',
+                    border: '2px solid #FFF'
+                  }}
+                />
+              )}
             </Link>
 
             {/* Profile Avatar Pill */}

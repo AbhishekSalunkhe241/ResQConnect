@@ -1,0 +1,42 @@
+export const mockNotifications = [
+  {
+    id: 'notif-1',
+    requestId: 'RQ-1022',
+    type: 'match',
+    title: 'Request Matched with Relief Organization',
+    desc: 'Your request RQ-1022 has been matched with Helping Hands Foundation. Assigned volunteer: Priya Mehta.',
+    time: '25 minutes ago',
+    timestamp: '2026-10-06T12:45:00Z',
+    unread: true,
+  },
+  {
+    id: 'notif-2',
+    requestId: 'RQ-1024',
+    type: 'verification',
+    title: 'Verification Update',
+    desc: 'Your request RQ-1024 is currently under verification by the Panvel Taluka field officer.',
+    time: '2 hours ago',
+    timestamp: '2026-10-06T11:15:00Z',
+    unread: true,
+  },
+  {
+    id: 'notif-3',
+    requestId: 'RQ-1021',
+    type: 'progress',
+    title: 'Assistance Dispatched',
+    desc: 'Seva Medical Relief Corps mobile ambulance unit is en route with chronic care refills and sterile wound kits.',
+    time: '5 hours ago',
+    timestamp: '2026-10-06T08:30:00Z',
+    unread: false,
+  },
+  {
+    id: 'notif-4',
+    requestId: 'RQ-1018',
+    type: 'completed',
+    title: 'Assistance Completed',
+    desc: 'Waterproof tarpaulin sheets and dry sleeping bedding signed off and handed over in Pen Taluka.',
+    time: '2 days ago',
+    timestamp: '2026-10-04T16:30:00Z',
+    unread: false,
+  }
+];
