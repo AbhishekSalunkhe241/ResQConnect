@@ -163,7 +163,7 @@ export const Landing = () => {
         style={{
           paddingTop: '4.5rem',
           paddingBottom: '4.5rem',
-          backgroundColor: '#FFFFFF',
+          backgroundColor: 'var(--bg-surface)',
           borderBottom: '1px solid var(--border-subtle)',
           position: 'relative'
         }}
@@ -180,7 +180,7 @@ export const Landing = () => {
               style={{
                 fontSize: 'clamp(2.4rem, 4.5vw, 3.75rem)',
                 fontWeight: 800,
-                color: 'var(--color-navy-950)',
+                color: 'var(--text-primary)',
                 lineHeight: 1.15,
                 letterSpacing: '-0.03em',
                 marginBottom: '1.5rem'
@@ -247,7 +247,7 @@ export const Landing = () => {
               <p className="text-xs font-bold text-muted" style={{ textTransform: 'uppercase', letterSpacing: '0.08em' }}>
                 The ResQConnect Recovery Journey
               </p>
-              <h3 style={{ fontSize: '1.25rem', marginTop: '0.25rem', color: 'var(--color-navy-900)' }}>
+              <h3 style={{ fontSize: '1.25rem', marginTop: '0.25rem', color: 'var(--text-primary)' }}>
                 How verified assistance reaches families after a disaster
               </h3>
             </div>
@@ -265,7 +265,7 @@ export const Landing = () => {
                 <div
                   key={idx}
                   style={{
-                    backgroundColor: '#FFFFFF',
+                    backgroundColor: 'var(--bg-surface)',
                     borderRadius: 'var(--radius-md)',
                     border: '1px solid var(--border-subtle)',
                     padding: '1rem 0.85rem',
@@ -292,7 +292,7 @@ export const Landing = () => {
                   >
                     {item.icon}
                   </div>
-                  <span style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--color-navy-900)' }}>
+                  <span style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--text-primary)' }}>
                     {item.title}
                   </span>
                   <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)', marginTop: '0.15rem' }}>
@@ -314,7 +314,7 @@ export const Landing = () => {
             <Badge variant="blue" style={{ marginBottom: '0.75rem' }}>
               Structured Coordination
             </Badge>
-            <h2 style={{ fontSize: '2.25rem', fontWeight: 800, color: 'var(--color-navy-950)' }}>
+            <h2 style={{ fontSize: '2.25rem', fontWeight: 800, color: 'var(--text-primary)' }}>
               How ResQConnect Works
             </h2>
             <p className="text-muted" style={{ marginTop: '0.5rem', fontSize: '1.05rem' }}>
@@ -344,7 +344,7 @@ export const Landing = () => {
                   </div>
 
                   <div>
-                    <h3 style={{ fontSize: '1.15rem', fontWeight: 700, color: 'var(--color-navy-900)', marginBottom: '0.35rem' }}>
+                    <h3 style={{ fontSize: '1.15rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '0.35rem' }}>
                       {step.title}
                     </h3>
                     <p className="text-muted text-sm" style={{ lineHeight: 1.6 }}>
@@ -361,13 +361,13 @@ export const Landing = () => {
       {/* =========================================================================
           SECTION C: WHO IT HELPS
           ========================================================================= */}
-      <section style={{ padding: '5rem 0', backgroundColor: '#FFFFFF', borderTop: '1px solid var(--border-subtle)' }}>
+      <section style={{ padding: '5rem 0', backgroundColor: 'var(--bg-surface)', borderTop: '1px solid var(--border-subtle)' }}>
         <div className="container">
           <div style={{ textAlign: 'center', maxWidth: '680px', margin: '0 auto 3.5rem' }}>
             <Badge variant="teal" style={{ marginBottom: '0.75rem' }}>
               Multi-Stakeholder Network
             </Badge>
-            <h2 style={{ fontSize: '2.25rem', fontWeight: 800, color: 'var(--color-navy-950)' }}>
+            <h2 style={{ fontSize: '2.25rem', fontWeight: 800, color: 'var(--text-primary)' }}>
               Built for Everyone Involved in Recovery
             </h2>
             <p className="text-muted" style={{ marginTop: '0.5rem', fontSize: '1.05rem' }}>
@@ -397,7 +397,7 @@ export const Landing = () => {
                       <Badge variant="slate">{card.badge}</Badge>
                     </div>
 
-                    <h3 style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--color-navy-900)', marginBottom: '0.5rem' }}>
+                    <h3 style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '0.5rem' }}>
                       {card.title}
                     </h3>
 
@@ -437,7 +437,7 @@ export const Landing = () => {
             style={{
               maxWidth: '920px',
               margin: '0 auto',
-              backgroundColor: '#FFFFFF',
+              backgroundColor: 'var(--bg-surface)',
               borderRadius: 'var(--radius-lg)',
               border: '1px solid #FCD34D',
               padding: '2.5rem',
@@ -507,13 +507,13 @@ export const Landing = () => {
       {/* =========================================================================
           SECTION E: TRUST & VERIFICATION
           ========================================================================= */}
-      <section style={{ padding: '5rem 0', backgroundColor: '#FFFFFF' }}>
+      <section style={{ padding: '5rem 0', backgroundColor: 'var(--bg-surface)' }}>
         <div className="container">
           <div style={{ textAlign: 'center', maxWidth: '680px', margin: '0 auto 3.5rem' }}>
             <Badge variant="green" icon={<ShieldCheck size={14} />} style={{ marginBottom: '0.75rem' }}>
               Integrity & Accountability
             </Badge>
-            <h2 style={{ fontSize: '2.25rem', fontWeight: 800, color: 'var(--color-navy-950)' }}>
+            <h2 style={{ fontSize: '2.25rem', fontWeight: 800, color: 'var(--text-primary)' }}>
               Trust Through Human Verification
             </h2>
             <p className="text-muted" style={{ marginTop: '0.5rem', fontSize: '1.05rem' }}>
@@ -568,12 +568,12 @@ export const Landing = () => {
         style={{
           padding: '4.5rem 0',
           backgroundColor: 'var(--color-navy-900)',
-          color: '#FFFFFF',
+          color: 'var(--bg-surface)',
           textAlign: 'center'
         }}
       >
         <div className="container" style={{ maxWidth: '720px' }}>
-          <h2 style={{ fontSize: '2.25rem', fontWeight: 800, color: '#FFFFFF', marginBottom: '1rem' }}>
+          <h2 style={{ fontSize: '2.25rem', fontWeight: 800, color: 'var(--bg-surface)', marginBottom: '1rem' }}>
             Ready to help communities recover?
           </h2>
           <p style={{ color: '#94A3B8', fontSize: '1.1rem', lineHeight: 1.6, marginBottom: '2.5rem' }}>

@@ -125,7 +125,7 @@ export const Register = () => {
               <HeartHandshake size={26} />
             </div>
           </Link>
-          <h1 style={{ fontSize: '1.75rem', fontWeight: 800, color: 'var(--color-navy-900)' }}>
+          <h1 style={{ fontSize: '1.75rem', fontWeight: 800, color: 'var(--text-primary)' }}>
             Join ResQConnect
           </h1>
           <p className="text-muted text-sm" style={{ marginTop: '0.35rem' }}>
@@ -150,7 +150,7 @@ export const Register = () => {
                     padding: '0.85rem 0.65rem',
                     borderRadius: 'var(--radius-md)',
                     border: active ? '2px solid var(--color-primary-600)' : '1px solid var(--border-default)',
-                    backgroundColor: active ? '#FFFFFF' : 'var(--bg-muted)',
+                    backgroundColor: active ? 'var(--bg-surface)' : 'var(--bg-muted)',
                     color: active ? 'var(--color-primary-700)' : 'var(--text-secondary)',
                     fontWeight: active ? 700 : 500,
                     cursor: 'pointer',

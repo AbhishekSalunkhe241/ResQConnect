@@ -287,7 +287,7 @@ export const RequestHelp = () => {
             Request ID: #{submittedRequest.id}
           </Badge>
 
-          <h1 style={{ fontSize: '1.95rem', fontWeight: 800, marginBottom: '0.65rem', color: 'var(--color-navy-950)' }}>
+          <h1 style={{ fontSize: '1.95rem', fontWeight: 800, marginBottom: '0.65rem', color: 'var(--text-primary)' }}>
             Request submitted successfully
           </h1>
 
@@ -309,7 +309,7 @@ export const RequestHelp = () => {
           >
             <div className="flex items-center justify-between" style={{ marginBottom: '0.35rem' }}>
               <span className="text-muted">Category:</span>
-              <strong style={{ color: 'var(--color-navy-900)' }}>{submittedRequest.category}</strong>
+              <strong style={{ color: 'var(--text-primary)' }}>{submittedRequest.category}</strong>
             </div>
             <div className="flex items-center justify-between" style={{ marginBottom: '0.35rem' }}>
               <span className="text-muted">Initial Status:</span>
@@ -346,7 +346,7 @@ export const RequestHelp = () => {
           <div style={{ marginBottom: '2rem', borderBottom: '1px solid var(--border-subtle)', paddingBottom: '1.25rem' }}>
             <div className="flex items-center gap-2.5" style={{ marginBottom: '0.4rem' }}>
               <HeartHandshake size={28} style={{ color: 'var(--color-primary-600)' }} />
-              <h1 style={{ fontSize: '1.85rem', fontWeight: 800, color: 'var(--color-navy-950)', margin: 0 }}>
+              <h1 style={{ fontSize: '1.85rem', fontWeight: 800, color: 'var(--text-primary)', margin: 0 }}>
                 Request Help
               </h1>
             </div>
@@ -359,7 +359,7 @@ export const RequestHelp = () => {
             
             {/* SECTION 5: REQUEST INFORMATION */}
             <div style={{ marginBottom: '2.5rem' }}>
-              <h2 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--color-navy-900)', marginBottom: '0.5rem' }}>
+              <h2 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--text-primary)', marginBottom: '0.5rem' }}>
                 What do you need help with?
               </h2>
               <p className="text-xs text-muted" style={{ marginBottom: '1.25rem' }}>
@@ -403,7 +403,7 @@ export const RequestHelp = () => {
                             padding: '0.5rem 1rem',
                             borderRadius: 'var(--radius-md)',
                             border: isSelected ? '2px solid var(--color-primary-600)' : '1px solid var(--border-default)',
-                            backgroundColor: isSelected ? 'var(--color-primary-50)' : '#FFFFFF',
+                            backgroundColor: isSelected ? 'var(--color-primary-50)' : 'var(--bg-surface)',
                             color: isSelected ? 'var(--color-primary-700)' : 'var(--text-secondary)',
                             fontWeight: isSelected ? 700 : 500,
                             fontSize: '0.875rem',
@@ -463,7 +463,7 @@ export const RequestHelp = () => {
             {/* SECTION 6: DESCRIPTION */}
             <div style={{ marginBottom: '2.5rem', borderTop: '1px solid var(--border-subtle)', paddingTop: '1.75rem' }}>
               <div className="flex items-center justify-between" style={{ marginBottom: '0.5rem' }}>
-                <h2 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--color-navy-900)', margin: 0 }}>
+                <h2 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--text-primary)', margin: 0 }}>
                   Describe your need
                 </h2>
                 <span className="text-xs text-muted">
@@ -513,7 +513,7 @@ export const RequestHelp = () => {
             <div style={{ marginBottom: '2.5rem', borderTop: '1px solid var(--border-subtle)', paddingTop: '1.75rem' }}>
               <div className="flex items-center justify-between flex-wrap gap-2" style={{ marginBottom: '0.5rem' }}>
                 <div>
-                  <h2 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--color-navy-900)', margin: 0 }}>
+                  <h2 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--text-primary)', margin: 0 }}>
                     Location
                   </h2>
                   <p className="text-xs text-muted" style={{ marginTop: '0.2rem' }}>
@@ -614,7 +614,7 @@ export const RequestHelp = () => {
             <div style={{ marginBottom: '2.5rem', borderTop: '1px solid var(--border-subtle)', paddingTop: '1.75rem' }}>
               <div className="flex items-center justify-between" style={{ marginBottom: '0.5rem' }}>
                 <div>
-                  <h2 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--color-navy-900)', margin: 0 }}>
+                  <h2 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--text-primary)', margin: 0 }}>
                     What do you need?
                   </h2>
                   <p className="text-xs text-muted" style={{ marginTop: '0.2rem' }}>
@@ -664,7 +664,7 @@ export const RequestHelp = () => {
                         onChange={(e) => handleItemChange(idx, 'item', e.target.value)}
                         placeholder="e.g. Water bottles, Food kits, Blankets"
                         className="form-input text-sm"
-                        style={{ backgroundColor: '#FFFFFF' }}
+                        style={{ backgroundColor: 'var(--bg-surface)' }}
                         required
                       />
                     </div>
@@ -679,7 +679,7 @@ export const RequestHelp = () => {
                         value={it.qty}
                         onChange={(e) => handleItemChange(idx, 'qty', e.target.value)}
                         className="form-input text-sm"
-                        style={{ backgroundColor: '#FFFFFF' }}
+                        style={{ backgroundColor: 'var(--bg-surface)' }}
                         required
                       />
                     </div>
@@ -694,7 +694,7 @@ export const RequestHelp = () => {
                         onChange={(e) => handleItemChange(idx, 'unit', e.target.value)}
                         placeholder="bottles, kits"
                         className="form-input text-sm"
-                        style={{ backgroundColor: '#FFFFFF' }}
+                        style={{ backgroundColor: 'var(--bg-surface)' }}
                       />
                     </div>
 
@@ -723,7 +723,7 @@ export const RequestHelp = () => {
 
             {/* SECTION 9: ADDITIONAL INFORMATION */}
             <div style={{ marginBottom: '2.5rem', borderTop: '1px solid var(--border-subtle)', paddingTop: '1.75rem' }}>
-              <h2 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--color-navy-900)', marginBottom: '0.5rem' }}>
+              <h2 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--text-primary)', marginBottom: '0.5rem' }}>
                 Additional Information
               </h2>
               <p className="text-xs text-muted" style={{ marginBottom: '1.25rem' }}>

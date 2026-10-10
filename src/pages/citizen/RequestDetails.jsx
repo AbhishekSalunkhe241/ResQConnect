@@ -236,7 +236,7 @@ export const RequestDetails = () => {
         <div className="flex items-start justify-between gap-4 flex-wrap">
           <div>
             <div className="flex items-center gap-2.5 flex-wrap" style={{ marginBottom: '0.5rem' }}>
-              <h1 style={{ fontSize: '1.85rem', fontWeight: 800, color: 'var(--color-navy-950)', margin: 0 }}>
+              <h1 style={{ fontSize: '1.85rem', fontWeight: 800, color: 'var(--text-primary)', margin: 0 }}>
                 Request #{request.id}
               </h1>
               <StatusBadge status={request.status} />
@@ -291,7 +291,7 @@ export const RequestDetails = () => {
             </div>
             <div style={{ flex: 1 }}>
               <div className="flex items-center justify-between gap-2 flex-wrap" style={{ marginBottom: '0.35rem' }}>
-                <h3 style={{ fontSize: '1.05rem', fontWeight: 800, color: 'var(--color-navy-950)', margin: 0 }}>
+                <h3 style={{ fontSize: '1.05rem', fontWeight: 800, color: 'var(--text-primary)', margin: 0 }}>
                   What's happening now?
                 </h3>
                 <span 
@@ -360,7 +360,7 @@ export const RequestDetails = () => {
                 <tbody>
                   {request.itemsNeeded?.map((item, idx) => (
                     <tr key={idx} style={{ borderBottom: '1px solid var(--border-subtle)' }}>
-                      <td style={{ padding: '0.75rem 0.5rem', fontWeight: 600, color: 'var(--color-navy-900)' }}>
+                      <td style={{ padding: '0.75rem 0.5rem', fontWeight: 600, color: 'var(--text-primary)' }}>
                         {item.item}
                       </td>
                       <td style={{ padding: '0.75rem 0.5rem', fontWeight: 700, color: 'var(--color-primary-700)' }}>
@@ -407,7 +407,7 @@ export const RequestDetails = () => {
                 <div className="grid grid-cols-2 md-grid-cols-1 gap-4">
                   <div>
                     <span className="text-xs font-semibold text-muted uppercase">Coordinating Organization</span>
-                    <p style={{ fontSize: '1rem', fontWeight: 800, color: 'var(--color-navy-900)', margin: '0.25rem 0 0.15rem 0' }}>
+                    <p style={{ fontSize: '1rem', fontWeight: 800, color: 'var(--text-primary)', margin: '0.25rem 0 0.15rem 0' }}>
                       {request.assignedOrganization?.name || 'Helping Hands Foundation'}
                     </p>
                     <div className="flex items-center gap-2">
@@ -422,7 +422,7 @@ export const RequestDetails = () => {
 
                   <div>
                     <span className="text-xs font-semibold text-muted uppercase">Assigned Volunteer Responder</span>
-                    <p style={{ fontSize: '1rem', fontWeight: 800, color: 'var(--color-navy-900)', margin: '0.25rem 0 0.15rem 0' }}>
+                    <p style={{ fontSize: '1rem', fontWeight: 800, color: 'var(--text-primary)', margin: '0.25rem 0 0.15rem 0' }}>
                       {request.assignedVolunteer?.name || 'Priya Mehta'}
                     </p>
                     <div className="flex items-center gap-2">
@@ -508,7 +508,7 @@ export const RequestDetails = () => {
 
                   <div style={{ flex: 1 }}>
                     <div className="flex items-center justify-between gap-2">
-                      <span style={{ fontWeight: 700, fontSize: '0.9rem', color: 'var(--color-navy-950)' }}>
+                      <span style={{ fontWeight: 700, fontSize: '0.9rem', color: 'var(--text-primary)' }}>
                         {step.step}
                       </span>
                       <span className="text-xs text-muted">{step.timestamp}</span>
@@ -528,7 +528,7 @@ export const RequestDetails = () => {
           
           {/* Section 15: Request Summary Card */}
           <Card>
-            <h3 style={{ fontSize: '1.05rem', fontWeight: 800, color: 'var(--color-navy-950)', marginBottom: '1rem', borderBottom: '1px solid var(--border-subtle)', paddingBottom: '0.5rem' }}>
+            <h3 style={{ fontSize: '1.05rem', fontWeight: 800, color: 'var(--text-primary)', marginBottom: '1rem', borderBottom: '1px solid var(--border-subtle)', paddingBottom: '0.5rem' }}>
               Request Summary
             </h3>
 
@@ -594,7 +594,7 @@ export const RequestDetails = () => {
           {/* Section 12 & 15: Current Status & Request Timeline */}
           <Card>
             <div className="flex items-center justify-between" style={{ marginBottom: '1rem', borderBottom: '1px solid var(--border-subtle)', paddingBottom: '0.5rem' }}>
-              <h3 style={{ fontSize: '1.05rem', fontWeight: 800, color: 'var(--color-navy-950)', margin: 0 }}>
+              <h3 style={{ fontSize: '1.05rem', fontWeight: 800, color: 'var(--text-primary)', margin: 0 }}>
                 Status Lifecycle
               </h3>
               <StatusBadge status={request.status} />
@@ -623,7 +623,7 @@ export const RequestDetails = () => {
               lineHeight: 1.5
             }}
           >
-            <strong style={{ display: 'block', color: 'var(--color-navy-900)', marginBottom: '0.25rem' }}>
+            <strong style={{ display: 'block', color: 'var(--text-primary)', marginBottom: '0.25rem' }}>
               Need urgent updates on this ticket?
             </strong>
             Contact Panvel Taluka Disaster Recovery Desk with reference ID <strong>#{request.id}</strong>.

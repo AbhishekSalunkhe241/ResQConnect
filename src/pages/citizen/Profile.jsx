@@ -48,7 +48,7 @@ export const Profile = () => {
       {/* Header */}
       <div className="flex items-center justify-between flex-wrap gap-3" style={{ marginBottom: '1.5rem' }}>
         <div>
-          <h1 style={{ fontSize: '1.85rem', fontWeight: 800, color: 'var(--color-navy-950)', margin: '0 0 0.35rem 0' }}>
+          <h1 style={{ fontSize: '1.85rem', fontWeight: 800, color: 'var(--text-primary)', margin: '0 0 0.35rem 0' }}>
             Citizen Profile
           </h1>
           <p className="text-muted" style={{ margin: 0, fontSize: '0.95rem' }}>
@@ -107,7 +107,7 @@ export const Profile = () => {
 
           <div style={{ flex: 1 }}>
             <div className="flex items-center gap-2 flex-wrap">
-              <h2 style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--color-navy-950)', margin: 0 }}>
+              <h2 style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--text-primary)', margin: 0 }}>
                 {name}
               </h2>
               <Badge variant="teal" icon={<ShieldCheck size={12} />}>
@@ -122,7 +122,7 @@ export const Profile = () => {
 
         {/* SECTION 22: ACCOUNT INFORMATION */}
         <div style={{ paddingTop: '1.25rem' }}>
-          <h3 style={{ fontSize: '1rem', fontWeight: 800, color: 'var(--color-navy-900)', marginBottom: '0.75rem' }}>
+          <h3 style={{ fontSize: '1rem', fontWeight: 800, color: 'var(--text-primary)', marginBottom: '0.75rem' }}>
             Account Information
           </h3>
 
@@ -136,7 +136,7 @@ export const Profile = () => {
               }}
             >
               <span className="text-xs font-semibold text-muted uppercase">Platform Role</span>
-              <p style={{ fontSize: '0.95rem', fontWeight: 700, color: 'var(--color-navy-900)', margin: '0.15rem 0 0 0' }}>
+              <p style={{ fontSize: '0.95rem', fontWeight: 700, color: 'var(--text-primary)', margin: '0.15rem 0 0 0' }}>
                 Citizen
               </p>
             </div>
@@ -161,7 +161,7 @@ export const Profile = () => {
       {/* SECTION 22: PERSONAL INFORMATION */}
       <Card>
         <div className="flex items-center justify-between" style={{ marginBottom: '1.25rem', borderBottom: '1px solid var(--border-subtle)', paddingBottom: '0.75rem' }}>
-          <h3 style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--color-navy-900)', margin: 0 }}>
+          <h3 style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--text-primary)', margin: 0 }}>
             Personal Information
           </h3>
           <span className="text-xs text-muted">Used for field dispatch & notifications</span>
@@ -223,28 +223,28 @@ export const Profile = () => {
           <div className="grid grid-cols-2 md-grid-cols-1 gap-4">
             <div>
               <span className="text-xs font-semibold text-muted uppercase">Full Name</span>
-              <p style={{ fontSize: '0.95rem', fontWeight: 700, color: 'var(--color-navy-900)', margin: '0.2rem 0 0 0' }}>
+              <p style={{ fontSize: '0.95rem', fontWeight: 700, color: 'var(--text-primary)', margin: '0.2rem 0 0 0' }}>
                 {name}
               </p>
             </div>
 
             <div>
               <span className="text-xs font-semibold text-muted uppercase">Email Address</span>
-              <p style={{ fontSize: '0.95rem', fontWeight: 600, color: 'var(--color-navy-900)', margin: '0.2rem 0 0 0' }}>
+              <p style={{ fontSize: '0.95rem', fontWeight: 600, color: 'var(--text-primary)', margin: '0.2rem 0 0 0' }}>
                 {email}
               </p>
             </div>
 
             <div>
               <span className="text-xs font-semibold text-muted uppercase">Phone</span>
-              <p style={{ fontSize: '0.95rem', fontWeight: 600, color: 'var(--color-navy-900)', margin: '0.2rem 0 0 0' }}>
+              <p style={{ fontSize: '0.95rem', fontWeight: 600, color: 'var(--text-primary)', margin: '0.2rem 0 0 0' }}>
                 {phone}
               </p>
             </div>
 
             <div>
               <span className="text-xs font-semibold text-muted uppercase">Location</span>
-              <p style={{ fontSize: '0.95rem', fontWeight: 600, color: 'var(--color-navy-900)', margin: '0.2rem 0 0 0' }}>
+              <p style={{ fontSize: '0.95rem', fontWeight: 600, color: 'var(--text-primary)', margin: '0.2rem 0 0 0' }}>
                 {location}
               </p>
             </div>

@@ -13,7 +13,7 @@ export const EmptyState = ({
       className={`text-center flex flex-col items-center justify-center ${className}`.trim()}
       style={{
         padding: '3.5rem 1.5rem',
-        backgroundColor: '#FFFFFF',
+        backgroundColor: 'var(--bg-surface)',
         borderRadius: 'var(--radius-lg)',
         border: '1px dashed var(--border-default)',
         maxWidth: '560px',

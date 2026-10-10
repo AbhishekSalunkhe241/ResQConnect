@@ -50,12 +50,12 @@ export const Recovery = () => {
   return (
     <div className="recovery-page">
       {/* Header */}
-      <section style={{ padding: '4.5rem 0 3rem', backgroundColor: '#FFFFFF', borderBottom: '1px solid var(--border-subtle)' }}>
+      <section style={{ padding: '4.5rem 0 3rem', backgroundColor: 'var(--bg-surface)', borderBottom: '1px solid var(--border-subtle)' }}>
         <div className="container" style={{ textAlign: 'center', maxWidth: '840px' }}>
           <Badge variant="amber" icon={<AlertTriangle size={14} />} style={{ marginBottom: '1rem' }}>
             Mission Distinction & Recovery Centers
           </Badge>
-          <h1 style={{ fontSize: '2.5rem', fontWeight: 800, color: 'var(--color-navy-950)', marginBottom: '1rem', letterSpacing: '-0.02em' }}>
+          <h1 style={{ fontSize: '2.5rem', fontWeight: 800, color: 'var(--text-primary)', marginBottom: '1rem', letterSpacing: '-0.02em' }}>
             Recovery vs. Emergency Response
           </h1>
           <p className="text-muted" style={{ fontSize: '1.1rem', lineHeight: 1.6 }}>
@@ -69,7 +69,7 @@ export const Recovery = () => {
         <div className="container" style={{ maxWidth: '960px' }}>
           <div
             style={{
-              backgroundColor: '#FFFFFF',
+              backgroundColor: 'var(--bg-surface)',
               borderRadius: 'var(--radius-lg)',
               border: '2px solid #F59E0B',
               padding: '2rem',
@@ -121,13 +121,13 @@ export const Recovery = () => {
       {/* ======================================================== */}
       {/* SECTION 7: RECOVERY HUBS & SCHEMATIC MAP DIRECTORY      */}
       {/* ======================================================== */}
-      <section style={{ padding: '4.5rem 0', backgroundColor: '#FFFFFF', borderBottom: '1px solid var(--border-subtle)' }}>
+      <section style={{ padding: '4.5rem 0', backgroundColor: 'var(--bg-surface)', borderBottom: '1px solid var(--border-subtle)' }}>
         <div className="container">
           <div style={{ textAlign: 'center', maxWidth: '780px', margin: '0 auto 2.5rem' }}>
             <Badge variant="teal" icon={<Building2 size={14} />} style={{ marginBottom: '0.75rem' }}>
               Field Assistance Centers Network
             </Badge>
-            <h2 style={{ fontSize: '2.2rem', fontWeight: 800, color: 'var(--color-navy-950)', marginBottom: '0.75rem' }}>
+            <h2 style={{ fontSize: '2.2rem', fontWeight: 800, color: 'var(--text-primary)', marginBottom: '0.75rem' }}>
               Active Post-Disaster Recovery Hubs
             </h2>
             <p className="text-muted" style={{ fontSize: '1rem', lineHeight: 1.6 }}>
@@ -216,7 +216,7 @@ export const Recovery = () => {
                   padding: '1.25rem',
                   marginBottom: '1.5rem',
                   backgroundColor: '#0F172A',
-                  color: '#FFFFFF',
+                  color: 'var(--bg-surface)',
                   position: 'relative',
                   overflow: 'hidden'
                 }}
@@ -224,7 +224,7 @@ export const Recovery = () => {
                 <div className="flex items-center justify-between" style={{ marginBottom: '0.75rem' }}>
                   <div className="flex items-center gap-2">
                     <MapPin size={18} style={{ color: 'var(--color-teal-500)' }} />
-                    <span style={{ fontWeight: 700, fontSize: '0.9rem', color: '#FFFFFF' }}>
+                    <span style={{ fontWeight: 700, fontSize: '0.9rem', color: 'var(--bg-surface)' }}>
                       Schematic Sector Map — Raigad Recovery Basin
                     </span>
                   </div>
@@ -317,7 +317,7 @@ export const Recovery = () => {
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
-                            color: '#FFFFFF',
+                            color: 'var(--bg-surface)',
                             fontWeight: 800,
                             fontSize: '0.75rem'
                           }}
@@ -330,7 +330,7 @@ export const Recovery = () => {
                           style={{
                             marginTop: '4px',
                             backgroundColor: isSelected ? 'var(--color-teal-600)' : 'rgba(15, 23, 42, 0.85)',
-                            color: '#FFFFFF',
+                            color: 'var(--bg-surface)',
                             fontSize: '0.65rem',
                             fontWeight: 700,
                             padding: '0.1rem 0.45rem',
@@ -360,12 +360,12 @@ export const Recovery = () => {
                         padding: '1rem 1.25rem',
                         cursor: 'pointer',
                         borderColor: isSelected ? 'var(--color-teal-600)' : 'var(--border-subtle)',
-                        backgroundColor: isSelected ? 'var(--color-teal-50)' : '#FFFFFF',
+                        backgroundColor: isSelected ? 'var(--color-teal-50)' : 'var(--bg-surface)',
                         borderLeft: `4px solid ${hub.status === 'Operational' ? 'var(--color-success-main)' : hub.status === 'High Demand' ? 'var(--color-warning-main)' : 'var(--color-info-main)'}`
                       }}
                     >
                       <div className="flex items-center justify-between" style={{ marginBottom: '0.35rem' }}>
-                        <span style={{ fontWeight: 800, fontSize: '0.95rem', color: 'var(--color-navy-950)' }}>
+                        <span style={{ fontWeight: 800, fontSize: '0.95rem', color: 'var(--text-primary)' }}>
                           {hub.name}
                         </span>
                         <Badge variant={hub.status === 'Operational' ? 'green' : hub.status === 'High Demand' ? 'amber' : 'blue'}>
@@ -397,7 +397,7 @@ export const Recovery = () => {
                     padding: '2rem',
                     border: '1px solid var(--border-default)',
                     boxShadow: 'var(--shadow-md)',
-                    backgroundColor: '#FFFFFF',
+                    backgroundColor: 'var(--bg-surface)',
                     position: 'sticky',
                     top: '90px'
                   }}
@@ -409,7 +409,7 @@ export const Recovery = () => {
                     </Badge>
                   </div>
 
-                  <h3 style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--color-navy-950)', marginBottom: '0.35rem' }}>
+                  <h3 style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--text-primary)', marginBottom: '0.35rem' }}>
                     {selectedHub.name}
                   </h3>
 
@@ -437,7 +437,7 @@ export const Recovery = () => {
                         <Clock size={13} />
                         <span>OPERATING HOURS</span>
                       </div>
-                      <p style={{ fontWeight: 700, margin: '0.2rem 0 0', color: 'var(--color-navy-900)' }}>
+                      <p style={{ fontWeight: 700, margin: '0.2rem 0 0', color: 'var(--text-primary)' }}>
                         {selectedHub.operatingHours}
                       </p>
                     </div>
@@ -447,7 +447,7 @@ export const Recovery = () => {
                         <Users size={13} />
                         <span>CAPACITY LOAD</span>
                       </div>
-                      <p style={{ fontWeight: 700, margin: '0.2rem 0 0', color: 'var(--color-navy-900)' }}>
+                      <p style={{ fontWeight: 700, margin: '0.2rem 0 0', color: 'var(--text-primary)' }}>
                         {selectedHub.capacity} ({selectedHub.occupancyRate}% full)
                       </p>
                     </div>
@@ -501,12 +501,12 @@ export const Recovery = () => {
                     <div 
                       style={{
                         padding: '0.75rem 1rem',
-                        backgroundColor: '#FFFFFF',
+                        backgroundColor: 'var(--bg-surface)',
                         border: '1px solid var(--border-default)',
                         borderRadius: 'var(--radius-sm)',
                         fontSize: '0.85rem',
                         fontWeight: 600,
-                        color: 'var(--color-navy-900)'
+                        color: 'var(--text-primary)'
                       }}
                     >
                       {selectedHub.inventorySummary}
@@ -526,7 +526,7 @@ export const Recovery = () => {
                   >
                     <div className="flex items-center justify-between" style={{ marginBottom: '0.25rem' }}>
                       <span className="text-muted font-bold">Field Coordinator:</span>
-                      <strong style={{ color: 'var(--color-navy-900)' }}>{selectedHub.contactPerson}</strong>
+                      <strong style={{ color: 'var(--text-primary)' }}>{selectedHub.contactPerson}</strong>
                     </div>
                     <div className="flex items-center justify-between">
                       <span className="text-muted font-bold">Demo Support Desk:</span>
@@ -566,7 +566,7 @@ export const Recovery = () => {
       <section style={{ padding: '4.5rem 0', backgroundColor: 'var(--bg-app)' }}>
         <div className="container" style={{ maxWidth: '960px' }}>
           <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-            <h2 style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--color-navy-950)' }}>
+            <h2 style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--text-primary)' }}>
               Where Does ResQConnect Fit In?
             </h2>
             <p className="text-muted" style={{ marginTop: '0.35rem' }}>
@@ -579,7 +579,7 @@ export const Recovery = () => {
             <Card style={{ borderTop: '4px solid #DC2626' }}>
               <div style={{ padding: '0.5rem 0 1rem', borderBottom: '1px solid var(--border-subtle)', marginBottom: '1.25rem' }}>
                 <span className="badge badge-red" style={{ marginBottom: '0.5rem' }}>Hours 0 – 48</span>
-                <h3 style={{ fontSize: '1.35rem', fontWeight: 800, color: 'var(--color-navy-950)' }}>
+                <h3 style={{ fontSize: '1.35rem', fontWeight: 800, color: 'var(--text-primary)' }}>
                   Acute Emergency Response
                 </h3>
                 <p className="text-muted text-sm" style={{ marginTop: '0.25rem' }}>
@@ -611,7 +611,7 @@ export const Recovery = () => {
             <Card style={{ borderTop: '4px solid var(--color-teal-600)' }}>
               <div style={{ padding: '0.5rem 0 1rem', borderBottom: '1px solid var(--border-subtle)', marginBottom: '1.25rem' }}>
                 <span className="badge badge-teal" style={{ marginBottom: '0.5rem' }}>Day 2 – Day 180+</span>
-                <h3 style={{ fontSize: '1.35rem', fontWeight: 800, color: 'var(--color-navy-950)' }}>
+                <h3 style={{ fontSize: '1.35rem', fontWeight: 800, color: 'var(--text-primary)' }}>
                   Post-Disaster Recovery & Care
                 </h3>
                 <p className="text-muted text-sm" style={{ marginTop: '0.25rem' }}>
@@ -647,13 +647,13 @@ export const Recovery = () => {
       </section>
 
       {/* Recovery Principles */}
-      <section style={{ padding: '4.5rem 0', backgroundColor: '#FFFFFF', borderTop: '1px solid var(--border-subtle)' }}>
+      <section style={{ padding: '4.5rem 0', backgroundColor: 'var(--bg-surface)', borderTop: '1px solid var(--border-subtle)' }}>
         <div className="container" style={{ maxWidth: '960px' }}>
           <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
             <Badge variant="teal" style={{ marginBottom: '0.5rem' }}>
               Guiding Philosophy
             </Badge>
-            <h2 style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--color-navy-950)' }}>
+            <h2 style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--text-primary)' }}>
               Core Recovery Principles
             </h2>
           </div>
@@ -671,7 +671,7 @@ export const Recovery = () => {
               >
                 <div className="flex items-center gap-2" style={{ marginBottom: '0.5rem' }}>
                   <ShieldCheck size={20} style={{ color: 'var(--color-teal-600)' }} />
-                  <h3 style={{ fontSize: '1.15rem', fontWeight: 700, color: 'var(--color-navy-900)' }}>
+                  <h3 style={{ fontSize: '1.15rem', fontWeight: 700, color: 'var(--text-primary)' }}>
                     {item.title}
                   </h3>
                 </div>

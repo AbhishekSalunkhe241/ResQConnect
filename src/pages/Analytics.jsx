@@ -138,7 +138,7 @@ export const Analytics = () => {
               </Badge>
               <span className="text-xs text-muted">• Real-Time Shared Demo State</span>
             </div>
-            <h1 style={{ fontSize: '2.25rem', fontWeight: 800, color: 'var(--color-navy-950)', margin: 0, letterSpacing: '-0.02em' }}>
+            <h1 style={{ fontSize: '2.25rem', fontWeight: 800, color: 'var(--text-primary)', margin: 0, letterSpacing: '-0.02em' }}>
               Disaster Recovery Analytics
             </h1>
             <p className="text-muted" style={{ marginTop: '0.35rem', maxWidth: '680px', fontSize: '0.95rem' }}>
@@ -163,7 +163,7 @@ export const Analytics = () => {
           style={{
             padding: '1rem 1.25rem',
             marginBottom: '2rem',
-            backgroundColor: '#FFFFFF',
+            backgroundColor: 'var(--bg-surface)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
@@ -265,7 +265,7 @@ export const Analytics = () => {
           <div className="card" style={{ padding: '1.75rem' }}>
             <div className="flex items-center justify-between" style={{ marginBottom: '1.25rem' }}>
               <div>
-                <h3 style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--color-navy-950)', margin: 0 }}>
+                <h3 style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--text-primary)', margin: 0 }}>
                   Assistance Ticket Lifecycle Funnel
                 </h3>
                 <span className="text-xs text-muted">Progress across verification, matching, and completion</span>
@@ -288,7 +288,7 @@ export const Analytics = () => {
                 return (
                   <div key={idx}>
                     <div className="flex items-center justify-between text-xs font-semibold" style={{ marginBottom: '0.35rem' }}>
-                      <span style={{ color: 'var(--color-navy-900)' }}>{step.label}</span>
+                      <span style={{ color: 'var(--text-primary)' }}>{step.label}</span>
                       <span>{count} tickets ({percentage}%)</span>
                     </div>
                     <div style={{ height: '10px', backgroundColor: 'var(--bg-muted)', borderRadius: '5px', overflow: 'hidden' }}>
@@ -312,7 +312,7 @@ export const Analytics = () => {
           <div className="card" style={{ padding: '1.75rem' }}>
             <div className="flex items-center justify-between" style={{ marginBottom: '1.25rem' }}>
               <div>
-                <h3 style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--color-navy-950)', margin: 0 }}>
+                <h3 style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--text-primary)', margin: 0 }}>
                   Need Distribution by Category
                 </h3>
                 <span className="text-xs text-muted">Proportion of physical supplies and services requested</span>
@@ -333,7 +333,7 @@ export const Analytics = () => {
                 return (
                   <div key={idx}>
                     <div className="flex items-center justify-between text-xs font-semibold" style={{ marginBottom: '0.35rem' }}>
-                      <span style={{ color: 'var(--color-navy-900)' }}>{cat.name}</span>
+                      <span style={{ color: 'var(--text-primary)' }}>{cat.name}</span>
                       <span>{count} Requests ({pct}%)</span>
                     </div>
                     <div style={{ height: '10px', backgroundColor: 'var(--bg-muted)', borderRadius: '5px', overflow: 'hidden' }}>
@@ -378,7 +378,7 @@ export const Analytics = () => {
         <div className="card" style={{ padding: '1.75rem', marginBottom: '2.5rem' }}>
           <div className="flex items-center justify-between" style={{ marginBottom: '1.25rem' }}>
             <div>
-              <h3 style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--color-navy-950)', margin: 0 }}>
+              <h3 style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--text-primary)', margin: 0 }}>
                 Warehouse Supply Chain & Critical Stock Levels
               </h3>
               <p className="text-xs text-muted" style={{ margin: '0.2rem 0 0' }}>
@@ -405,7 +405,7 @@ export const Analytics = () => {
               <tbody>
                 {resources.map((item) => (
                   <tr key={item.id} style={{ borderBottom: '1px solid var(--border-subtle)' }}>
-                    <td style={{ padding: '0.75rem 1rem', fontWeight: 700, color: 'var(--color-navy-900)' }}>
+                    <td style={{ padding: '0.75rem 1rem', fontWeight: 700, color: 'var(--text-primary)' }}>
                       {item.name}
                     </td>
                     <td style={{ padding: '0.75rem 1rem' }}>
@@ -440,7 +440,7 @@ export const Analytics = () => {
           <div className="card" style={{ padding: '1.75rem' }}>
             <div className="flex items-center justify-between" style={{ marginBottom: '1.25rem' }}>
               <div>
-                <h3 style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--color-navy-950)', margin: 0 }}>
+                <h3 style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--text-primary)', margin: 0 }}>
                   Volunteer Task Resolution Performance
                 </h3>
                 <span className="text-xs text-muted">Accredited responders deployed in active disaster zones</span>
@@ -470,7 +470,7 @@ export const Analytics = () => {
                       style={{ width: '32px', height: '32px', borderRadius: '50%', objectFit: 'cover' }}
                     />
                     <div>
-                      <strong style={{ color: 'var(--color-navy-900)' }}>{vol.name}</strong>
+                      <strong style={{ color: 'var(--text-primary)' }}>{vol.name}</strong>
                       <span style={{ display: 'block', fontSize: '0.75rem', color: 'var(--text-muted)' }}>
                         {vol.location} • {vol.badge || 'Responder'}
                       </span>
@@ -494,7 +494,7 @@ export const Analytics = () => {
           <div className="card" style={{ padding: '1.75rem' }}>
             <div className="flex items-center justify-between" style={{ marginBottom: '1.25rem' }}>
               <div>
-                <h3 style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--color-navy-950)', margin: 0 }}>
+                <h3 style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--text-primary)', margin: 0 }}>
                   Partner NGO Operations Summary
                 </h3>
                 <span className="text-xs text-muted">Field organizations coordinating district dispatches</span>
@@ -515,7 +515,7 @@ export const Analytics = () => {
                   }}
                 >
                   <div className="flex items-center justify-between" style={{ marginBottom: '0.35rem' }}>
-                    <strong style={{ color: 'var(--color-navy-950)', fontSize: '0.9rem' }}>{ngo.name}</strong>
+                    <strong style={{ color: 'var(--text-primary)', fontSize: '0.9rem' }}>{ngo.name}</strong>
                     <Badge variant={ngo.verified ? 'green' : 'amber'} style={{ fontSize: '0.7rem' }}>
                       {ngo.verified ? 'Accredited' : 'Pending Verification'}
                     </Badge>

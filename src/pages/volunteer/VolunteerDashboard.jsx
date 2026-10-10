@@ -204,7 +204,7 @@ export const VolunteerDashboard = () => {
           background: 'linear-gradient(135deg, #0F172A 0%, #1E293B 100%)',
           borderRadius: 'var(--radius-lg)',
           padding: '2rem',
-          color: '#FFFFFF',
+          color: 'var(--bg-surface)',
           marginBottom: '2rem',
           boxShadow: 'var(--shadow-md)',
           position: 'relative',
@@ -217,7 +217,7 @@ export const VolunteerDashboard = () => {
               <Badge variant="teal">Volunteer Mobilization Desk</Badge>
               <span style={{ fontSize: '0.8rem', color: '#94A3B8' }}>• Verified Field Responder</span>
             </div>
-            <h1 style={{ fontSize: '1.85rem', fontWeight: 800, color: '#FFFFFF', margin: 0 }}>
+            <h1 style={{ fontSize: '1.85rem', fontWeight: 800, color: 'var(--bg-surface)', margin: 0 }}>
               Welcome back, {currentUser?.name || 'Priya Mehta'}
             </h1>
             <p style={{ color: '#94A3B8', marginTop: '0.35rem', maxWidth: '650px', fontSize: '0.95rem' }}>
@@ -318,7 +318,7 @@ export const VolunteerDashboard = () => {
               padding: '0.1rem 0.5rem',
               borderRadius: 'var(--radius-full)',
               backgroundColor: activeTab === 'assigned' ? 'var(--color-teal-600)' : 'var(--bg-muted)',
-              color: activeTab === 'assigned' ? '#FFFFFF' : 'var(--text-muted)',
+              color: activeTab === 'assigned' ? 'var(--bg-surface)' : 'var(--text-muted)',
               fontSize: '0.75rem',
               fontWeight: 700
             }}
@@ -351,7 +351,7 @@ export const VolunteerDashboard = () => {
               padding: '0.1rem 0.5rem',
               borderRadius: 'var(--radius-full)',
               backgroundColor: activeTab === 'pool' ? 'var(--color-teal-600)' : 'var(--bg-muted)',
-              color: activeTab === 'pool' ? '#FFFFFF' : 'var(--text-muted)',
+              color: activeTab === 'pool' ? 'var(--bg-surface)' : 'var(--text-muted)',
               fontSize: '0.75rem',
               fontWeight: 700
             }}
@@ -384,7 +384,7 @@ export const VolunteerDashboard = () => {
               padding: '0.1rem 0.5rem',
               borderRadius: 'var(--radius-full)',
               backgroundColor: activeTab === 'history' ? 'var(--color-teal-600)' : 'var(--bg-muted)',
-              color: activeTab === 'history' ? '#FFFFFF' : 'var(--text-muted)',
+              color: activeTab === 'history' ? 'var(--bg-surface)' : 'var(--text-muted)',
               fontSize: '0.75rem',
               fontWeight: 700
             }}
@@ -400,7 +400,7 @@ export const VolunteerDashboard = () => {
         style={{
           padding: '1rem 1.25rem',
           marginBottom: '1.5rem',
-          backgroundColor: '#FFFFFF'
+          backgroundColor: 'var(--bg-surface)'
         }}
       >
         <div className="flex items-center gap-3 flex-wrap">
@@ -509,7 +509,7 @@ export const VolunteerDashboard = () => {
                 <div style={{ flex: 1 }}>
                   {/* Top Meta */}
                   <div className="flex items-center gap-2 flex-wrap" style={{ marginBottom: '0.45rem' }}>
-                    <span style={{ fontWeight: 800, color: 'var(--color-navy-900)', fontSize: '0.95rem' }}>
+                    <span style={{ fontWeight: 800, color: 'var(--text-primary)', fontSize: '0.95rem' }}>
                       {task.id}
                     </span>
                     <Badge variant={task.category === 'Medical Assistance' ? 'red' : task.category === 'Food & Water' ? 'blue' : task.category === 'Shelter' ? 'purple' : 'teal'}>
@@ -527,7 +527,7 @@ export const VolunteerDashboard = () => {
                   </div>
 
                   {/* Title & Description */}
-                  <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--color-navy-950)', marginBottom: '0.35rem' }}>
+                  <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '0.35rem' }}>
                     {task.title}
                   </h3>
                   <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', lineHeight: 1.5, marginBottom: '0.75rem', maxWidth: '850px' }}>
@@ -680,7 +680,7 @@ export const VolunteerDashboard = () => {
             </div>
 
             <div>
-              <h4 style={{ fontSize: '1.15rem', fontWeight: 700, color: 'var(--color-navy-900)' }}>
+              <h4 style={{ fontSize: '1.15rem', fontWeight: 700, color: 'var(--text-primary)' }}>
                 {selectedTask.title}
               </h4>
               <p style={{ marginTop: '0.4rem', color: 'var(--text-secondary)', lineHeight: 1.6, fontSize: '0.925rem' }}>
@@ -702,7 +702,7 @@ export const VolunteerDashboard = () => {
             >
               <div>
                 <p className="text-xs text-muted font-semibold uppercase">Requester Info (Demo)</p>
-                <p style={{ fontWeight: 700, marginTop: '0.2rem', color: 'var(--color-navy-900)' }}>
+                <p style={{ fontWeight: 700, marginTop: '0.2rem', color: 'var(--text-primary)' }}>
                   {selectedTask.requester?.name || 'Rahul Sharma'}
                 </p>
                 <p className="text-xs text-muted">{selectedTask.requester?.phone || '+91 98201 44521'}</p>
@@ -726,7 +726,7 @@ export const VolunteerDashboard = () => {
 
             {/* Items Needed */}
             <div>
-              <h5 style={{ fontSize: '0.9rem', fontWeight: 700, marginBottom: '0.5rem', color: 'var(--color-navy-900)' }}>
+              <h5 style={{ fontSize: '0.9rem', fontWeight: 700, marginBottom: '0.5rem', color: 'var(--text-primary)' }}>
                 Assistance Supplies Required
               </h5>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
@@ -739,7 +739,7 @@ export const VolunteerDashboard = () => {
                       justifyContent: 'space-between',
                       padding: '0.45rem 0.75rem',
                       borderRadius: 'var(--radius-sm)',
-                      backgroundColor: '#FFFFFF',
+                      backgroundColor: 'var(--bg-surface)',
                       border: '1px solid var(--border-subtle)',
                       fontSize: '0.85rem'
                     }}
@@ -754,7 +754,7 @@ export const VolunteerDashboard = () => {
             {/* Check-In History if any */}
             {selectedTask.checkInNotes && selectedTask.checkInNotes.length > 0 && (
               <div>
-                <h5 style={{ fontSize: '0.9rem', fontWeight: 700, marginBottom: '0.5rem', color: 'var(--color-navy-900)' }}>
+                <h5 style={{ fontSize: '0.9rem', fontWeight: 700, marginBottom: '0.5rem', color: 'var(--text-primary)' }}>
                   Field Check-in History
                 </h5>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
@@ -782,7 +782,7 @@ export const VolunteerDashboard = () => {
 
             {/* Timeline */}
             <div>
-              <h5 style={{ fontSize: '0.9rem', fontWeight: 700, marginBottom: '0.5rem', color: 'var(--color-navy-900)' }}>
+              <h5 style={{ fontSize: '0.9rem', fontWeight: 700, marginBottom: '0.5rem', color: 'var(--text-primary)' }}>
                 Request Activity Milestones
               </h5>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>

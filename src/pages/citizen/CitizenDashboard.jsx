@@ -78,7 +78,7 @@ export const CitizenDashboard = () => {
           ========================================================================= */}
       <div
         style={{
-          backgroundColor: '#FFFFFF',
+          backgroundColor: 'var(--bg-surface)',
           borderRadius: 'var(--radius-lg)',
           border: '1px solid var(--border-subtle)',
           padding: '1.75rem 2rem',
@@ -93,7 +93,7 @@ export const CitizenDashboard = () => {
       >
         <div>
           <div className="flex items-center gap-2" style={{ marginBottom: '0.35rem' }}>
-            <h1 style={{ fontSize: '1.65rem', fontWeight: 800, color: 'var(--color-navy-900)' }}>
+            <h1 style={{ fontSize: '1.65rem', fontWeight: 800, color: 'var(--text-primary)' }}>
               Good morning, {userName}
             </h1>
             <Badge variant="teal">{currentUser?.location?.split(',')[0] || 'Panvel Zone'}</Badge>
@@ -137,7 +137,7 @@ export const CitizenDashboard = () => {
       <div style={{ marginBottom: '2.5rem' }}>
         <div className="flex items-center justify-between" style={{ marginBottom: '1rem' }}>
           <div>
-            <h2 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--color-navy-900)' }}>
+            <h2 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--text-primary)' }}>
               Quick Actions
             </h2>
             <p className="text-xs text-muted" style={{ marginTop: '0.15rem' }}>
@@ -168,7 +168,7 @@ export const CitizenDashboard = () => {
                 >
                   <PlusCircle size={20} />
                 </div>
-                <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--color-navy-900)' }}>
+                <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--text-primary)' }}>
                   Request Help
                 </h3>
                 <p className="text-xs text-muted" style={{ lineHeight: 1.5, margin: 0 }}>
@@ -199,7 +199,7 @@ export const CitizenDashboard = () => {
                 >
                   <Clock size={20} />
                 </div>
-                <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--color-navy-900)' }}>
+                <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--text-primary)' }}>
                   Track Requests
                 </h3>
                 <p className="text-xs text-muted" style={{ lineHeight: 1.5, margin: 0 }}>
@@ -230,7 +230,7 @@ export const CitizenDashboard = () => {
                 >
                   <Compass size={20} />
                 </div>
-                <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--color-navy-900)' }}>
+                <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--text-primary)' }}>
                   Find Assistance
                 </h3>
                 <p className="text-xs text-muted" style={{ lineHeight: 1.5, margin: 0 }}>
@@ -261,7 +261,7 @@ export const CitizenDashboard = () => {
                 >
                   <HeartHandshake size={20} />
                 </div>
-                <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--color-navy-900)' }}>
+                <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--text-primary)' }}>
                   Volunteer
                 </h3>
                 <p className="text-xs text-muted" style={{ lineHeight: 1.5, margin: 0 }}>
@@ -279,7 +279,7 @@ export const CitizenDashboard = () => {
       <div>
         <div className="flex items-center justify-between flex-wrap gap-2" style={{ marginBottom: '1rem' }}>
           <div>
-            <h2 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--color-navy-900)' }}>
+            <h2 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--text-primary)' }}>
               Recent Recovery Requests
             </h2>
             <p className="text-xs text-muted" style={{ marginTop: '0.15rem' }}>
@@ -335,7 +335,7 @@ export const CitizenDashboard = () => {
                   </div>
 
                   {/* Title & Description */}
-                  <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--color-navy-900)', marginBottom: '0.35rem' }}>
+                  <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '0.35rem' }}>
                     {req.title}
                   </h3>
 

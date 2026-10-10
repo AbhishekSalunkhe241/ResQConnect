@@ -134,7 +134,7 @@ export const Login = () => {
               <HeartHandshake size={26} />
             </div>
           </Link>
-          <h1 style={{ fontSize: '1.75rem', fontWeight: 800, color: 'var(--color-navy-900)' }}>
+          <h1 style={{ fontSize: '1.75rem', fontWeight: 800, color: 'var(--text-primary)' }}>
             Welcome to ResQConnect
           </h1>
           <p className="text-muted text-sm" style={{ marginTop: '0.35rem' }}>
@@ -143,7 +143,7 @@ export const Login = () => {
         </div>
 
         {/* Demo Role Selector Section */}
-        <Card style={{ marginBottom: '1.5rem', border: '1px solid #BAE6FD', backgroundColor: '#F0F9FF' }}>
+        <Card style={{ marginBottom: '1.5rem', border: '1px solid #BAE6FD', backgroundColor: 'var(--color-primary-50)' }}>
           <div style={{ padding: '0.25rem' }}>
             <div className="flex items-center justify-between" style={{ marginBottom: '0.75rem' }}>
               <div className="flex items-center gap-2">
@@ -166,7 +166,7 @@ export const Login = () => {
                       textAlign: 'left',
                       padding: '0.75rem',
                       borderRadius: 'var(--radius-md)',
-                      backgroundColor: isSelected ? '#FFFFFF' : 'rgba(255,255,255,0.6)',
+                      backgroundColor: isSelected ? 'var(--bg-surface)' : 'rgba(255,255,255,0.6)',
                       border: isSelected ? '2px solid var(--color-primary-600)' : '1px solid #BAE6FD',
                       cursor: 'pointer',
                       transition: 'all 0.15s ease',

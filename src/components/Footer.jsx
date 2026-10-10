@@ -28,12 +28,12 @@ export const Footer = () => {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  color: '#FFFFFF'
+                  color: 'var(--bg-surface)'
                 }}
               >
                 <HeartHandshake size={20} />
               </div>
-              <span style={{ fontSize: '1.25rem', fontWeight: 800, color: '#FFFFFF', letterSpacing: '-0.02em' }}>
+              <span style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--bg-surface)', letterSpacing: '-0.02em' }}>
                 ResQ<span style={{ color: 'var(--color-teal-500)' }}>Connect</span>
               </span>
             </div>
@@ -52,7 +52,7 @@ export const Footer = () => {
 
           {/* Platform Navigation */}
           <div>
-            <h4 style={{ color: '#FFFFFF', fontSize: '0.925rem', fontWeight: 700, marginBottom: '1.15rem', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+            <h4 style={{ color: 'var(--bg-surface)', fontSize: '0.925rem', fontWeight: 700, marginBottom: '1.15rem', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
               Platform
             </h4>
             <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.65rem', fontSize: '0.875rem' }}>
@@ -66,7 +66,7 @@ export const Footer = () => {
 
           {/* Coordination Hubs */}
           <div>
-            <h4 style={{ color: '#FFFFFF', fontSize: '0.925rem', fontWeight: 700, marginBottom: '1.15rem', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+            <h4 style={{ color: 'var(--bg-surface)', fontSize: '0.925rem', fontWeight: 700, marginBottom: '1.15rem', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
               Stakeholders
             </h4>
             <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.65rem', fontSize: '0.875rem' }}>
@@ -79,7 +79,7 @@ export const Footer = () => {
 
           {/* Trust & Policies */}
           <div>
-            <h4 style={{ color: '#FFFFFF', fontSize: '0.925rem', fontWeight: 700, marginBottom: '1.15rem', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+            <h4 style={{ color: 'var(--bg-surface)', fontSize: '0.925rem', fontWeight: 700, marginBottom: '1.15rem', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
               Trust & Transparency
             </h4>
             <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.65rem', fontSize: '0.875rem' }}>

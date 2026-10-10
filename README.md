@@ -10,6 +10,7 @@ ResQConnect is a frontend demonstration for coordinating post-disaster recovery 
 - NGO operations view with rule-based request matching, inventory management, and bounded resource allocation.
 - Admin review for accounts and requests, moderation, flags, audit logs, and overview metrics.
 - Recovery hub directory and analytics with CSV export.
+- Persistent light/dark theme toggle available from the navigation bars.
 
 ## Technology
 
@@ -52,7 +53,7 @@ NGO matching uses deterministic rules over request priority, category, location,
 
 ## Data and reset
 
-Demo data is initialized from `src/data/` and persisted in localStorage. Clearing site data in the browser removes the demo state. The admin dashboard also offers a mock-data reset; it overwrites the current demo state after confirmation. Avoid using that action if you want to retain browser demo records.
+Demo data is initialized from `src/data/` and persisted in localStorage. The selected light/dark theme is stored separately in localStorage. Clearing site data in the browser removes the demo state. The admin dashboard also offers a mock-data reset; it overwrites the current demo state after confirmation. Avoid using that action if you want to retain browser demo records.
 
 ## Limitations and future work
 

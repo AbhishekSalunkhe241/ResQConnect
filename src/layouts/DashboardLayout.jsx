@@ -25,6 +25,7 @@ import { useRequests } from '../context/RequestContext';
 import Badge from '../components/Badge';
 import Modal from '../components/Modal';
 import Button from '../components/Button';
+import { ThemeToggle } from '../context/ThemeContext';
 
 export const DashboardLayout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -250,7 +251,7 @@ export const DashboardLayout = () => {
                 justifyContent: 'space-between',
                 padding: '0.65rem 0.85rem',
                 borderRadius: 'var(--radius-md)',
-                color: isActive ? '#FFFFFF' : '#94A3B8',
+                color: isActive ? 'var(--bg-surface)' : '#94A3B8',
                 backgroundColor: isActive ? 'var(--color-navy-800)' : 'transparent',
                 fontWeight: isActive ? 600 : 500,
                 fontSize: '0.9rem',
@@ -402,7 +403,7 @@ export const DashboardLayout = () => {
               style={{
                 background: 'none',
                 border: 'none',
-                color: 'var(--color-navy-900)',
+                color: 'var(--text-primary)',
                 cursor: 'pointer',
                 display: 'none',
                 padding: '0.25rem'
@@ -432,8 +433,8 @@ export const DashboardLayout = () => {
                   borderRadius: 'var(--radius-full)',
                   borderColor: 'var(--border-default)',
                   fontWeight: 600,
-                  backgroundColor: '#FFFFFF',
-                  color: 'var(--color-navy-900)'
+                  backgroundColor: 'var(--bg-surface)',
+                  color: 'var(--text-primary)'
                 }}
               >
                 <option value="citizen">Citizen Portal</option>
@@ -443,6 +444,8 @@ export const DashboardLayout = () => {
               </select>
             </div>
 
+            <ThemeToggle />
+
             {/* Notification Bell */}
             <Link
               to="/citizen/notifications"
@@ -451,7 +454,7 @@ export const DashboardLayout = () => {
                 padding: '0.45rem',
                 borderRadius: 'var(--radius-md)',
                 backgroundColor: 'var(--bg-muted)',
-                color: 'var(--color-navy-800)',
+                color: 'var(--text-secondary)',
                 display: 'flex'
               }}
               title={`${unreadNotificationsCount} Unread Notifications`}
@@ -491,7 +494,7 @@ export const DashboardLayout = () => {
                 alt=""
                 style={{ width: '28px', height: '28px', borderRadius: '50%', objectFit: 'cover' }}
               />
-              <span className="text-xs font-semibold md-hidden" style={{ color: 'var(--color-navy-900)' }}>
+              <span className="text-xs font-semibold md-hidden" style={{ color: 'var(--text-primary)' }}>
                 {currentUser?.name?.split(' ')[0] || 'User'}
               </span>
               <Badge variant={roleBadgeMap[activeRole] || 'teal'} style={{ fontSize: '0.65rem', padding: '0.1rem 0.45rem' }}>

@@ -57,7 +57,7 @@ export const MyRequests = () => {
       {/* Header (Section 13) */}
       <div className="flex items-center justify-between flex-wrap gap-4" style={{ marginBottom: '1.75rem' }}>
         <div>
-          <h1 style={{ fontSize: '1.85rem', fontWeight: 800, color: 'var(--color-navy-950)', margin: '0 0 0.35rem 0' }}>
+          <h1 style={{ fontSize: '1.85rem', fontWeight: 800, color: 'var(--text-primary)', margin: '0 0 0.35rem 0' }}>
             My Requests
           </h1>
           <p className="text-muted" style={{ margin: 0, fontSize: '0.95rem' }}>
@@ -78,7 +78,7 @@ export const MyRequests = () => {
       {/* Filter Tabs & Search Bar */}
       <div
         style={{
-          backgroundColor: '#FFFFFF',
+          backgroundColor: 'var(--bg-surface)',
           borderRadius: 'var(--radius-lg)',
           border: '1px solid var(--border-subtle)',
           padding: '1.25rem',
@@ -184,7 +184,7 @@ export const MyRequests = () => {
 
                         {/* Category */}
                         <td style={{ padding: '1rem' }}>
-                          <span style={{ fontWeight: 600, color: 'var(--color-navy-900)', display: 'block' }}>
+                          <span style={{ fontWeight: 600, color: 'var(--text-primary)', display: 'block' }}>
                             {req.category}
                           </span>
                           <span className="text-xs text-muted" style={{ display: 'block', maxWidth: '240px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
@@ -261,7 +261,7 @@ export const MyRequests = () => {
                   <StatusBadge status={req.status} />
                 </div>
 
-                <h3 style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--color-navy-950)', margin: '0.2rem 0 0.4rem 0' }}>
+                <h3 style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--text-primary)', margin: '0.2rem 0 0.4rem 0' }}>
                   {req.title}
                 </h3>
 

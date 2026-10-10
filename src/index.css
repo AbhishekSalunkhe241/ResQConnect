@@ -255,7 +255,7 @@ button, input, select, textarea {
 }
 
 .btn-secondary {
-  background-color: #FFFFFF;
+  background-color: var(--bg-surface);
   color: var(--color-navy-800);
   border-color: var(--border-default);
   box-shadow: var(--shadow-xs);
@@ -423,7 +423,7 @@ button, input, select, textarea {
   padding: 0.65rem 0.95rem;
   border-radius: var(--radius-md);
   border: 1px solid var(--border-default);
-  background-color: #FFFFFF;
+  background-color: var(--bg-surface);
   color: var(--text-primary);
   font-size: 0.925rem;
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
@@ -471,7 +471,7 @@ button, input, select, textarea {
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background: #FFFFFF;
+  background: var(--bg-surface);
   border: 2px solid var(--border-default);
   display: flex;
   align-items: center;
@@ -520,7 +520,7 @@ button, input, select, textarea {
 }
 
 .modal-content {
-  background-color: #FFFFFF;
+  background-color: var(--bg-surface);
   border-radius: var(--radius-lg);
   border: 1px solid var(--border-subtle);
   box-shadow: var(--shadow-xl);
@@ -534,7 +534,7 @@ button, input, select, textarea {
 .stat-card {
   padding: 1.35rem;
   border-radius: var(--radius-lg);
-  background-color: #FFFFFF;
+  background-color: var(--bg-surface);
   border: 1px solid var(--border-subtle);
   display: flex;
   align-items: flex-start;
@@ -601,7 +601,7 @@ button, input, select, textarea {
 
 .dashboard-topbar {
   height: 70px;
-  background-color: #FFFFFF;
+  background-color: var(--bg-surface);
   border-bottom: 1px solid var(--border-subtle);
   display: flex;
   align-items: center;
@@ -624,4 +624,74 @@ button, input, select, textarea {
   .dashboard-content {
     padding: 1.25rem 1rem;
   }
+}
+
+
+/* Theme tokens and controls */
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --bg-app: #0B1220;
+  --bg-surface: #121C2B;
+  --bg-surface-elevated: #182437;
+  --bg-muted: #1B293B;
+  --bg-muted-hover: #26364B;
+  --border-subtle: #2A394D;
+  --border-default: #3B4C62;
+  --border-strong: #53677F;
+  --text-primary: #E5EDF6;
+  --text-secondary: #C1CEDD;
+  --text-muted: #98A9BD;
+  --text-light: #8294AA;
+  --color-teal-700: #5EEAD4;
+  --color-teal-600: #2DD4BF;
+  --color-teal-50: #12332F;
+  --color-primary-700: #38BDF8;
+  --color-primary-600: #38BDF8;
+  --color-primary-50: #112D3D;
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.22);
+  --shadow-sm: 0 2px 5px rgba(0, 0, 0, 0.28);
+  --shadow-md: 0 6px 14px rgba(0, 0, 0, 0.32);
+  --shadow-lg: 0 12px 24px rgba(0, 0, 0, 0.38);
+  --shadow-xl: 0 20px 36px rgba(0, 0, 0, 0.48);
+}
+
+:root[data-theme='dark'] body {
+  background-color: var(--bg-app);
+  color: var(--text-primary);
+}
+
+:root[data-theme='dark'] .dashboard-sidebar {
+  background-color: #080D17;
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  min-height: 36px;
+  padding: 0.4rem 0.7rem;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+}
+
+.theme-toggle:hover {
+  background: var(--bg-muted);
+  border-color: var(--border-strong);
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--color-primary-600);
+  outline-offset: 2px;
+}
+
+@media (max-width: 768px) {
+  .theme-toggle { width: 100%; justify-content: flex-start; }
+  .md-hidden > .theme-toggle { width: auto; }
 }

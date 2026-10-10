@@ -19,12 +19,12 @@ export const About = () => {
   return (
     <div className="about-page">
       {/* Hero */}
-      <section style={{ padding: '4.5rem 0 3rem', backgroundColor: '#FFFFFF', borderBottom: '1px solid var(--border-subtle)' }}>
+      <section style={{ padding: '4.5rem 0 3rem', backgroundColor: 'var(--bg-surface)', borderBottom: '1px solid var(--border-subtle)' }}>
         <div className="container" style={{ textAlign: 'center', maxWidth: '780px' }}>
           <Badge variant="teal" icon={<HeartHandshake size={14} />} style={{ marginBottom: '1rem' }}>
             Our Mission & Standards
           </Badge>
-          <h1 style={{ fontSize: '2.5rem', fontWeight: 800, color: 'var(--color-navy-950)', marginBottom: '1rem' }}>
+          <h1 style={{ fontSize: '2.5rem', fontWeight: 800, color: 'var(--text-primary)', marginBottom: '1rem' }}>
             About ResQConnect
           </h1>
           <p className="text-muted" style={{ fontSize: '1.15rem', lineHeight: 1.6 }}>
@@ -40,7 +40,7 @@ export const About = () => {
       <section style={{ padding: '4.5rem 0', backgroundColor: 'var(--bg-app)' }}>
         <div className="container" style={{ maxWidth: '960px' }}>
           <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-            <h2 style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--color-navy-950)' }}>
+            <h2 style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--text-primary)' }}>
               Our 4 Pillars of Operational Trust
             </h2>
             <p className="text-muted" style={{ marginTop: '0.35rem' }}>
@@ -101,13 +101,13 @@ export const About = () => {
       </section>
 
       {/* Partner Organizations Sample */}
-      <section style={{ padding: '4.5rem 0', backgroundColor: '#FFFFFF', borderTop: '1px solid var(--border-subtle)' }}>
+      <section style={{ padding: '4.5rem 0', backgroundColor: 'var(--bg-surface)', borderTop: '1px solid var(--border-subtle)' }}>
         <div className="container" style={{ maxWidth: '960px' }}>
           <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
             <Badge variant="teal" style={{ marginBottom: '0.5rem' }}>
               Relief Network
             </Badge>
-            <h2 style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--color-navy-950)' }}>
+            <h2 style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--text-primary)' }}>
               Accredited Partner Organizations
             </h2>
             <p className="text-muted" style={{ marginTop: '0.35rem' }}>
@@ -120,7 +120,7 @@ export const About = () => {
               <Card key={org.id} hoverable>
                 <div className="flex items-start justify-between gap-3" style={{ marginBottom: '0.75rem' }}>
                   <div>
-                    <h3 style={{ fontSize: '1.15rem', fontWeight: 700, color: 'var(--color-navy-900)' }}>
+                    <h3 style={{ fontSize: '1.15rem', fontWeight: 700, color: 'var(--text-primary)' }}>
                       {org.name}
                     </h3>
                     <p className="text-xs text-muted" style={{ marginTop: '0.15rem' }}>

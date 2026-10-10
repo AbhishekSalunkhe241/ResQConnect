@@ -59,7 +59,7 @@ export const StatCard = ({
         <p className="text-xs font-semibold text-muted" style={{ textTransform: 'uppercase', letterSpacing: '0.04em' }}>
           {title}
         </p>
-        <h3 style={{ fontSize: '1.75rem', fontWeight: 800, marginTop: '0.15rem', color: 'var(--color-navy-900)' }}>
+        <h3 style={{ fontSize: '1.75rem', fontWeight: 800, marginTop: '0.15rem', color: 'var(--text-primary)' }}>
           {value}
         </h3>
         {subtext && (

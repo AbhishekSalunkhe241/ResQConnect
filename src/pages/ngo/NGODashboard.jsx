@@ -372,7 +372,7 @@ export const NGODashboard = () => {
           background: 'linear-gradient(135deg, #0F172A 0%, #1E293B 100%)',
           borderRadius: 'var(--radius-lg)',
           padding: '2rem',
-          color: '#FFFFFF',
+          color: 'var(--bg-surface)',
           marginBottom: '2rem',
           boxShadow: 'var(--shadow-md)',
           position: 'relative'
@@ -384,7 +384,7 @@ export const NGODashboard = () => {
               <Badge variant="teal">Operations Center</Badge>
               <span style={{ fontSize: '0.8rem', color: '#94A3B8' }}>• Tier 1 Verified NGO Partner</span>
             </div>
-            <h1 style={{ fontSize: '1.85rem', fontWeight: 800, color: '#FFFFFF', margin: 0 }}>
+            <h1 style={{ fontSize: '1.85rem', fontWeight: 800, color: 'var(--bg-surface)', margin: 0 }}>
               {currentUser?.name || 'Helping Hands Foundation'}
             </h1>
             <p style={{ color: '#94A3B8', marginTop: '0.35rem', maxWidth: '650px', fontSize: '0.95rem' }}>
@@ -631,7 +631,7 @@ export const NGODashboard = () => {
       {activeTab === 'requests' && (
         <div>
           {/* Filter Bar */}
-          <div className="card" style={{ padding: '1rem 1.25rem', marginBottom: '1.5rem', backgroundColor: '#FFFFFF' }}>
+          <div className="card" style={{ padding: '1rem 1.25rem', marginBottom: '1.5rem', backgroundColor: 'var(--bg-surface)' }}>
             <div className="flex items-center gap-3 flex-wrap">
               <div style={{ flex: '1 1 220px', position: 'relative' }}>
                 <Search size={16} style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} />
@@ -736,11 +736,11 @@ export const NGODashboard = () => {
                         style={{ borderBottom: '1px solid var(--border-subtle)', transition: 'background-color 0.15s ease' }}
                         className="hover-row"
                       >
-                        <td style={{ padding: '0.85rem 1rem', fontWeight: 800, color: 'var(--color-navy-900)' }}>
+                        <td style={{ padding: '0.85rem 1rem', fontWeight: 800, color: 'var(--text-primary)' }}>
                           {req.id}
                         </td>
                         <td style={{ padding: '0.85rem 1rem', maxWidth: '260px' }}>
-                          <p style={{ fontWeight: 600, color: 'var(--color-navy-950)', margin: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                          <p style={{ fontWeight: 600, color: 'var(--text-primary)', margin: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                             {req.title}
                           </p>
                           <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
@@ -857,7 +857,7 @@ export const NGODashboard = () => {
                 {/* Request Header */}
                 <div className="flex items-center justify-between md-flex-col md-items-start gap-2" style={{ marginBottom: '1rem', borderBottom: '1px solid var(--border-subtle)', paddingBottom: '0.75rem' }}>
                   <div className="flex items-center gap-2 flex-wrap">
-                    <span style={{ fontWeight: 800, fontSize: '1rem', color: 'var(--color-navy-900)' }}>{req.id}</span>
+                    <span style={{ fontWeight: 800, fontSize: '1rem', color: 'var(--text-primary)' }}>{req.id}</span>
                     <Badge variant="teal">{req.category}</Badge>
                     <Badge variant={req.priority === 'High' ? 'red' : 'amber'}>{req.priority} Priority</Badge>
                     <StatusBadge status={req.status} />
@@ -867,7 +867,7 @@ export const NGODashboard = () => {
                   </div>
                 </div>
 
-                <h4 style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--color-navy-950)', marginBottom: '0.5rem' }}>
+                <h4 style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '0.5rem' }}>
                   {req.title}
                 </h4>
 
@@ -893,7 +893,7 @@ export const NGODashboard = () => {
 
                     {topResourceMatch ? (
                       <div>
-                        <h5 style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--color-navy-900)', margin: '0.2rem 0' }}>
+                        <h5 style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--text-primary)', margin: '0.2rem 0' }}>
                           {topResourceMatch.resource.name}
                         </h5>
                         <p className="text-xs text-muted" style={{ marginBottom: '0.75rem' }}>
@@ -944,7 +944,7 @@ export const NGODashboard = () => {
 
                     {topVolunteerMatch ? (
                       <div>
-                        <h5 style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--color-navy-900)', margin: '0.2rem 0' }}>
+                        <h5 style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--text-primary)', margin: '0.2rem 0' }}>
                           {topVolunteerMatch.volunteer.name}
                         </h5>
                         <p className="text-xs text-muted" style={{ marginBottom: '0.75rem' }}>
@@ -990,7 +990,7 @@ export const NGODashboard = () => {
         <div>
           <div className="flex items-center justify-between" style={{ marginBottom: '1.25rem' }}>
             <div>
-              <h3 style={{ fontSize: '1.2rem', fontWeight: 800, color: 'var(--color-navy-950)', margin: 0 }}>
+              <h3 style={{ fontSize: '1.2rem', fontWeight: 800, color: 'var(--text-primary)', margin: 0 }}>
                 Accredited Volunteer Responders Roster
               </h3>
               <p className="text-xs text-muted" style={{ marginTop: '0.2rem' }}>
@@ -1013,7 +1013,7 @@ export const NGODashboard = () => {
                     style={{ width: '48px', height: '48px', borderRadius: '50%', objectFit: 'cover' }}
                   />
                   <div>
-                    <h4 style={{ fontWeight: 700, fontSize: '1rem', color: 'var(--color-navy-900)', margin: 0 }}>
+                    <h4 style={{ fontWeight: 700, fontSize: '1rem', color: 'var(--text-primary)', margin: 0 }}>
                       {vol.name}
                     </h4>
                     <span className="text-xs text-muted">{vol.location}</span>
@@ -1082,7 +1082,7 @@ export const NGODashboard = () => {
         <div>
           <div className="flex items-center justify-between" style={{ marginBottom: '1.25rem' }}>
             <div>
-              <h3 style={{ fontSize: '1.2rem', fontWeight: 800, color: 'var(--color-navy-950)', margin: 0 }}>
+              <h3 style={{ fontSize: '1.2rem', fontWeight: 800, color: 'var(--text-primary)', margin: 0 }}>
                 Relief Supplies & Warehouse Stock
               </h3>
               <p className="text-xs text-muted" style={{ marginTop: '0.2rem' }}>
@@ -1120,7 +1120,7 @@ export const NGODashboard = () => {
                       className="hover-row"
                     >
                       <td style={{ padding: '0.85rem 1rem' }}>
-                        <span style={{ fontWeight: 700, color: 'var(--color-navy-900)' }}>
+                        <span style={{ fontWeight: 700, color: 'var(--text-primary)' }}>
                           {item.name}
                         </span>
                         {item.notes && (
@@ -1194,7 +1194,7 @@ export const NGODashboard = () => {
       {activeTab === 'activity' && (
         <div>
           <div style={{ marginBottom: '1.25rem' }}>
-            <h3 style={{ fontSize: '1.2rem', fontWeight: 800, color: 'var(--color-navy-950)', margin: 0 }}>
+            <h3 style={{ fontSize: '1.2rem', fontWeight: 800, color: 'var(--text-primary)', margin: 0 }}>
               Recent NGO Operations Trail
             </h3>
             <p className="text-xs text-muted" style={{ marginTop: '0.2rem' }}>
@@ -1221,7 +1221,7 @@ export const NGODashboard = () => {
                   <div style={{ flex: 1 }}>
                     <div className="flex items-center gap-2" style={{ marginBottom: '0.2rem' }}>
                       <Badge variant="teal" style={{ fontSize: '0.7rem' }}>{log.actionType}</Badge>
-                      <span style={{ fontWeight: 700, fontSize: '0.85rem', color: 'var(--color-navy-900)' }}>
+                      <span style={{ fontWeight: 700, fontSize: '0.85rem', color: 'var(--text-primary)' }}>
                         Target: {log.targetId} ({log.targetType})
                       </span>
                     </div>
@@ -1296,7 +1296,7 @@ export const NGODashboard = () => {
             </div>
 
             <div>
-              <h4 style={{ fontSize: '1.15rem', fontWeight: 700, color: 'var(--color-navy-900)' }}>
+              <h4 style={{ fontSize: '1.15rem', fontWeight: 700, color: 'var(--text-primary)' }}>
                 {selectedRequest.title}
               </h4>
               <p style={{ marginTop: '0.4rem', color: 'var(--text-secondary)', fontSize: '0.9rem', lineHeight: 1.5 }}>

@@ -277,7 +277,7 @@ export const AdminDashboard = () => {
           background: 'linear-gradient(135deg, #0F172A 0%, #1E293B 100%)',
           borderRadius: 'var(--radius-lg)',
           padding: '2rem',
-          color: '#FFFFFF',
+          color: 'var(--bg-surface)',
           marginBottom: '2rem',
           boxShadow: 'var(--shadow-md)',
           position: 'relative'
@@ -289,7 +289,7 @@ export const AdminDashboard = () => {
               <Badge variant="slate">State Coordination Bureau</Badge>
               <span style={{ fontSize: '0.8rem', color: '#94A3B8' }}>• Administrative Triage Console</span>
             </div>
-            <h1 style={{ fontSize: '1.85rem', fontWeight: 800, color: '#FFFFFF', margin: 0 }}>
+            <h1 style={{ fontSize: '1.85rem', fontWeight: 800, color: 'var(--bg-surface)', margin: 0 }}>
               System Administration Desk
             </h1>
             <p style={{ color: '#94A3B8', marginTop: '0.35rem', maxWidth: '650px', fontSize: '0.95rem' }}>
@@ -316,7 +316,7 @@ export const AdminDashboard = () => {
               size="sm"
               icon={<AlertCircle size={15} />}
               onClick={() => setShowResetConfirmModal(true)}
-              style={{ backgroundColor: 'rgba(255, 255, 255, 0.15)', color: '#FFFFFF', borderColor: 'rgba(255, 255, 255, 0.25)' }}
+              style={{ backgroundColor: 'rgba(255, 255, 255, 0.15)', color: 'var(--bg-surface)', borderColor: 'rgba(255, 255, 255, 0.25)' }}
             >
               Reset All Demo Data
             </Button>
@@ -411,7 +411,7 @@ export const AdminDashboard = () => {
               padding: '0.1rem 0.5rem',
               borderRadius: 'var(--radius-full)',
               backgroundColor: pendingQueue.length > 0 ? 'var(--color-warning-main)' : 'var(--bg-muted)',
-              color: pendingQueue.length > 0 ? '#FFFFFF' : 'var(--text-muted)',
+              color: pendingQueue.length > 0 ? 'var(--bg-surface)' : 'var(--text-muted)',
               fontSize: '0.75rem',
               fontWeight: 700
             }}
@@ -533,7 +533,7 @@ export const AdminDashboard = () => {
                   borderRadius: 'var(--radius-full)',
                   border: '1px solid',
                   borderColor: verifTypeFilter === p.id ? 'var(--color-teal-600)' : 'var(--border-default)',
-                  backgroundColor: verifTypeFilter === p.id ? 'var(--color-teal-50)' : '#FFFFFF',
+                  backgroundColor: verifTypeFilter === p.id ? 'var(--color-teal-50)' : 'var(--bg-surface)',
                   color: verifTypeFilter === p.id ? 'var(--color-teal-700)' : 'var(--text-secondary)',
                   fontWeight: verifTypeFilter === p.id ? 700 : 500,
                   fontSize: '0.825rem',
@@ -567,14 +567,14 @@ export const AdminDashboard = () => {
                 >
                   <div style={{ flex: 1 }}>
                     <div className="flex items-center gap-2" style={{ marginBottom: '0.4rem' }}>
-                      <span style={{ fontWeight: 800, color: 'var(--color-navy-900)' }}>{item.id}</span>
+                      <span style={{ fontWeight: 800, color: 'var(--text-primary)' }}>{item.id}</span>
                       <Badge variant={item.queueType === 'ngo' ? 'purple' : item.queueType === 'volunteer' ? 'teal' : 'blue'}>
                         {item.queueType === 'ngo' ? 'Relief NGO' : item.queueType === 'volunteer' ? 'Volunteer Applicant' : 'Assistance Request'}
                       </Badge>
                       <Badge variant="amber">Awaiting Triage</Badge>
                     </div>
 
-                    <h4 style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--color-navy-950)', margin: '0 0 0.25rem' }}>
+                    <h4 style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--text-primary)', margin: '0 0 0.25rem' }}>
                       {item.title}
                     </h4>
 
@@ -622,7 +622,7 @@ export const AdminDashboard = () => {
       {activeTab === 'users' && (
         <div>
           {/* Filters */}
-          <div className="card" style={{ padding: '1rem 1.25rem', marginBottom: '1.5rem', backgroundColor: '#FFFFFF' }}>
+          <div className="card" style={{ padding: '1rem 1.25rem', marginBottom: '1.5rem', backgroundColor: 'var(--bg-surface)' }}>
             <div className="flex items-center gap-3 flex-wrap">
               <div style={{ flex: '1 1 240px', position: 'relative' }}>
                 <Search size={16} style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} />
@@ -681,7 +681,7 @@ export const AdminDashboard = () => {
                             style={{ width: '36px', height: '36px', borderRadius: '50%', objectFit: 'cover' }}
                           />
                           <div>
-                            <span style={{ fontWeight: 700, color: 'var(--color-navy-950)', display: 'block' }}>
+                            <span style={{ fontWeight: 700, color: 'var(--text-primary)', display: 'block' }}>
                               {user.name}
                             </span>
                             <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>ID: {user.id}</span>
@@ -747,7 +747,7 @@ export const AdminDashboard = () => {
       {activeTab === 'requests' && (
         <div>
           {/* Filter Bar */}
-          <div className="card" style={{ padding: '1rem 1.25rem', marginBottom: '1.5rem', backgroundColor: '#FFFFFF' }}>
+          <div className="card" style={{ padding: '1rem 1.25rem', marginBottom: '1.5rem', backgroundColor: 'var(--bg-surface)' }}>
             <div className="flex items-center gap-3 flex-wrap">
               <div style={{ flex: '1 1 240px', position: 'relative' }}>
                 <Search size={16} style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} />
@@ -809,11 +809,11 @@ export const AdminDashboard = () => {
                 <tbody>
                   {filteredModerationRequests.map((req) => (
                     <tr key={req.id} style={{ borderBottom: '1px solid var(--border-subtle)' }} className="hover-row">
-                      <td style={{ padding: '0.85rem 1rem', fontWeight: 800, color: 'var(--color-navy-900)' }}>
+                      <td style={{ padding: '0.85rem 1rem', fontWeight: 800, color: 'var(--text-primary)' }}>
                         {req.id}
                       </td>
                       <td style={{ padding: '0.85rem 1rem', maxWidth: '280px' }}>
-                        <p style={{ fontWeight: 600, color: 'var(--color-navy-950)', margin: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                        <p style={{ fontWeight: 600, color: 'var(--text-primary)', margin: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                           {req.title}
                         </p>
                         <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
@@ -893,7 +893,7 @@ export const AdminDashboard = () => {
         <div>
           <div className="flex items-center justify-between" style={{ marginBottom: '1.25rem' }}>
             <div>
-              <h3 style={{ fontSize: '1.2rem', fontWeight: 800, color: 'var(--color-navy-950)', margin: 0 }}>
+              <h3 style={{ fontSize: '1.2rem', fontWeight: 800, color: 'var(--text-primary)', margin: 0 }}>
                 Immutable Administrative Audit Trail
               </h3>
               <p className="text-xs text-muted" style={{ marginTop: '0.2rem' }}>
@@ -903,7 +903,7 @@ export const AdminDashboard = () => {
           </div>
 
           {/* Audit Filters */}
-          <div className="card" style={{ padding: '1rem 1.25rem', marginBottom: '1.5rem', backgroundColor: '#FFFFFF' }}>
+          <div className="card" style={{ padding: '1rem 1.25rem', marginBottom: '1.5rem', backgroundColor: 'var(--bg-surface)' }}>
             <div className="flex items-center gap-3 flex-wrap">
               <div style={{ flex: '1 1 240px', position: 'relative' }}>
                 <Search size={16} style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} />
@@ -950,7 +950,7 @@ export const AdminDashboard = () => {
                   <div style={{ flex: 1 }}>
                     <div className="flex items-center gap-2" style={{ marginBottom: '0.25rem' }}>
                       <Badge variant="teal">{log.actionType}</Badge>
-                      <span style={{ fontWeight: 700, fontSize: '0.85rem', color: 'var(--color-navy-900)' }}>
+                      <span style={{ fontWeight: 700, fontSize: '0.85rem', color: 'var(--text-primary)' }}>
                         {log.targetId} ({log.targetType})
                       </span>
                     </div>
@@ -980,7 +980,7 @@ export const AdminDashboard = () => {
       {activeTab === 'analytics' && (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
           <div>
-            <h3 style={{ fontSize: '1.2rem', fontWeight: 800, color: 'var(--color-navy-950)', margin: 0 }}>
+            <h3 style={{ fontSize: '1.2rem', fontWeight: 800, color: 'var(--text-primary)', margin: 0 }}>
               Macro Recovery Operations Visualizer
             </h3>
             <p className="text-xs text-muted" style={{ marginTop: '0.2rem' }}>
@@ -991,7 +991,7 @@ export const AdminDashboard = () => {
           <div className="grid-2" style={{ gap: '1.5rem' }}>
             {/* Status Distribution Meter */}
             <div className="card" style={{ padding: '1.5rem' }}>
-              <h4 style={{ fontSize: '1.05rem', fontWeight: 700, marginBottom: '1rem', color: 'var(--color-navy-900)' }}>
+              <h4 style={{ fontSize: '1.05rem', fontWeight: 700, marginBottom: '1rem', color: 'var(--text-primary)' }}>
                 Assistance Ticket Status Funnel
               </h4>
 
@@ -1021,7 +1021,7 @@ export const AdminDashboard = () => {
 
             {/* Assistance Category Breakdown */}
             <div className="card" style={{ padding: '1.5rem' }}>
-              <h4 style={{ fontSize: '1.05rem', fontWeight: 700, marginBottom: '1rem', color: 'var(--color-navy-900)' }}>
+              <h4 style={{ fontSize: '1.05rem', fontWeight: 700, marginBottom: '1rem', color: 'var(--text-primary)' }}>
                 Category Demands Distribution
               </h4>
 
@@ -1071,7 +1071,7 @@ export const AdminDashboard = () => {
           }
         >
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            <h4 style={{ fontSize: '1.15rem', fontWeight: 700, color: 'var(--color-navy-900)', margin: 0 }}>
+            <h4 style={{ fontSize: '1.15rem', fontWeight: 700, color: 'var(--text-primary)', margin: 0 }}>
               {viewDetailModal.data?.name || viewDetailModal.data?.title}
             </h4>
 

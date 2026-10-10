@@ -56,7 +56,7 @@ export const Notifications = () => {
       <div className="flex items-center justify-between flex-wrap gap-3" style={{ marginBottom: '1.5rem' }}>
         <div>
           <div className="flex items-center gap-2.5">
-            <h1 style={{ fontSize: '1.85rem', fontWeight: 800, color: 'var(--color-navy-950)', margin: 0 }}>
+            <h1 style={{ fontSize: '1.85rem', fontWeight: 800, color: 'var(--text-primary)', margin: 0 }}>
               Notifications & Alerts
             </h1>
             {unreadNotificationsCount > 0 && (
@@ -93,7 +93,7 @@ export const Notifications = () => {
             borderRadius: 'var(--radius-md)',
             border: '1px solid',
             borderColor: filterMode === 'all' ? 'var(--color-primary-600)' : 'var(--border-subtle)',
-            backgroundColor: filterMode === 'all' ? 'var(--color-primary-50)' : '#FFFFFF',
+            backgroundColor: filterMode === 'all' ? 'var(--color-primary-50)' : 'var(--bg-surface)',
             color: filterMode === 'all' ? 'var(--color-primary-700)' : 'var(--text-secondary)',
             fontWeight: filterMode === 'all' ? 700 : 500,
             fontSize: '0.85rem',
@@ -110,7 +110,7 @@ export const Notifications = () => {
             borderRadius: 'var(--radius-md)',
             border: '1px solid',
             borderColor: filterMode === 'unread' ? 'var(--color-primary-600)' : 'var(--border-subtle)',
-            backgroundColor: filterMode === 'unread' ? 'var(--color-primary-50)' : '#FFFFFF',
+            backgroundColor: filterMode === 'unread' ? 'var(--color-primary-50)' : 'var(--bg-surface)',
             color: filterMode === 'unread' ? 'var(--color-primary-700)' : 'var(--text-secondary)',
             fontWeight: filterMode === 'unread' ? 700 : 500,
             fontSize: '0.85rem',
@@ -129,7 +129,7 @@ export const Notifications = () => {
               key={n.id}
               style={{
                 borderLeft: n.unread ? '4px solid var(--color-primary-600)' : '1px solid var(--border-subtle)',
-                backgroundColor: n.unread ? '#F0F9FF' : '#FFFFFF',
+                backgroundColor: n.unread ? '#F0F9FF' : 'var(--bg-surface)',
                 transition: 'all 0.15s ease'
               }}
               hoverable
@@ -141,7 +141,7 @@ export const Notifications = () => {
                     width: '40px',
                     height: '40px',
                     borderRadius: '50%',
-                    backgroundColor: n.unread ? '#FFFFFF' : 'var(--bg-muted)',
+                    backgroundColor: n.unread ? 'var(--bg-surface)' : 'var(--bg-muted)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -157,7 +157,7 @@ export const Notifications = () => {
                 <div style={{ flex: 1 }}>
                   <div className="flex items-center justify-between gap-2 flex-wrap" style={{ marginBottom: '0.25rem' }}>
                     <div className="flex items-center gap-2">
-                      <h3 style={{ fontSize: '0.975rem', fontWeight: 700, color: 'var(--color-navy-950)', margin: 0 }}>
+                      <h3 style={{ fontSize: '0.975rem', fontWeight: 700, color: 'var(--text-primary)', margin: 0 }}>
                         {n.title}
                       </h3>
                       {n.unread && (

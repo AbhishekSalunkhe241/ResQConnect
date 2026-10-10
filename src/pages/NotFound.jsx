@@ -24,7 +24,7 @@ export const NotFound = () => {
             <Compass size={28} />
           </div>
 
-          <h1 style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--color-navy-950)', marginBottom: '0.5rem' }}>
+          <h1 style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--text-primary)', marginBottom: '0.5rem' }}>
             Page Not Found (404)
           </h1>
 

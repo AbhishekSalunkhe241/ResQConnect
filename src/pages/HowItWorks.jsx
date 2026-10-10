@@ -102,12 +102,12 @@ export const HowItWorks = () => {
   return (
     <div className="how-it-works-page">
       {/* Header */}
-      <section style={{ padding: '4rem 0 3rem', backgroundColor: '#FFFFFF', borderBottom: '1px solid var(--border-subtle)' }}>
+      <section style={{ padding: '4rem 0 3rem', backgroundColor: 'var(--bg-surface)', borderBottom: '1px solid var(--border-subtle)' }}>
         <div className="container" style={{ textAlign: 'center', maxWidth: '780px' }}>
           <Badge variant="teal" style={{ marginBottom: '1rem' }}>
             Coordination Blueprint
           </Badge>
-          <h1 style={{ fontSize: '2.5rem', fontWeight: 800, color: 'var(--color-navy-950)', marginBottom: '1rem' }}>
+          <h1 style={{ fontSize: '2.5rem', fontWeight: 800, color: 'var(--text-primary)', marginBottom: '1rem' }}>
             How ResQConnect Coordinates Post-Disaster Recovery
           </h1>
           <p className="text-muted" style={{ fontSize: '1.1rem', lineHeight: 1.6 }}>
@@ -143,7 +143,7 @@ export const HowItWorks = () => {
                   <div style={{ flex: 1 }}>
                     <div className="flex items-center gap-2 flex-wrap" style={{ marginBottom: '0.4rem' }}>
                       <Badge variant="slate">{st.badge}</Badge>
-                      <h3 style={{ fontSize: '1.35rem', fontWeight: 800, color: 'var(--color-navy-900)' }}>
+                      <h3 style={{ fontSize: '1.35rem', fontWeight: 800, color: 'var(--text-primary)' }}>
                         {st.title}
                       </h3>
                     </div>
@@ -178,13 +178,13 @@ export const HowItWorks = () => {
       </section>
 
       {/* Request Status Lifecycle Section */}
-      <section style={{ padding: '4.5rem 0', backgroundColor: '#FFFFFF', borderTop: '1px solid var(--border-subtle)' }}>
+      <section style={{ padding: '4.5rem 0', backgroundColor: 'var(--bg-surface)', borderTop: '1px solid var(--border-subtle)' }}>
         <div className="container" style={{ maxWidth: '960px' }}>
           <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
             <Badge variant="blue" style={{ marginBottom: '0.75rem' }}>
               Standardized Status Registry
             </Badge>
-            <h2 style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--color-navy-950)' }}>
+            <h2 style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--text-primary)' }}>
               Standardized Request Status Lifecycles
             </h2>
             <p className="text-muted" style={{ marginTop: '0.4rem' }}>

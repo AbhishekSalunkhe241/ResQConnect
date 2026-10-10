@@ -12,6 +12,7 @@ import {
 import { useAuth } from '../context/AuthContext';
 import Button from './Button';
 import Badge from './Badge';
+import { ThemeToggle } from '../context/ThemeContext';
 
 export const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -35,7 +36,7 @@ export const Navbar = () => {
     <header
       style={{
         height: 'var(--navbar-height)',
-        backgroundColor: '#FFFFFF',
+        backgroundColor: 'var(--bg-surface)',
         borderBottom: '1px solid var(--border-subtle)',
         position: 'sticky',
         top: 0,
@@ -66,7 +67,7 @@ export const Navbar = () => {
             <HeartHandshake size={24} />
           </div>
           <div style={{ display: 'flex', flexDirection: 'column' }}>
-            <span style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--color-navy-900)', letterSpacing: '-0.02em', lineHeight: 1.1 }}>
+            <span style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--text-primary)', letterSpacing: '-0.02em', lineHeight: 1.1 }}>
               ResQ<span style={{ color: 'var(--color-teal-600)' }}>Connect</span>
             </span>
             <span style={{ fontSize: '0.65rem', color: 'var(--text-muted)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
@@ -109,6 +110,7 @@ export const Navbar = () => {
 
         {/* Action Buttons / Auth */}
         <div className="md-hidden flex items-center gap-3">
+          <ThemeToggle />
           {isAuthenticated ? (
             <div className="flex items-center gap-2">
               <Button
@@ -184,7 +186,7 @@ export const Navbar = () => {
             background: 'none',
             border: 'none',
             padding: '0.5rem',
-            color: 'var(--color-navy-900)',
+            color: 'var(--text-primary)',
             cursor: 'pointer'
           }}
           className="mobile-toggle-btn"
@@ -198,7 +200,7 @@ export const Navbar = () => {
         <div
           className="animate-fade-in"
           style={{
-            backgroundColor: '#FFFFFF',
+            backgroundColor: 'var(--bg-surface)',
             borderBottom: '1px solid var(--border-subtle)',
             padding: '1.25rem 1.5rem',
             boxShadow: 'var(--shadow-lg)'
@@ -223,6 +225,7 @@ export const Navbar = () => {
             ))}
 
             <div style={{ marginTop: '0.75rem', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+              <ThemeToggle />
               {isAuthenticated ? (
                 <>
                   <div className="flex items-center justify-between" style={{ padding: '0.5rem 0' }}>
