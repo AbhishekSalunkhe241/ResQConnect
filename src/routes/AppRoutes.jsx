@@ -12,6 +12,7 @@ import Recovery from '../pages/Recovery';
 import About from '../pages/About';
 import Login from '../pages/Login';
 import Register from '../pages/Register';
+import Analytics from '../pages/Analytics';
 import NotFound from '../pages/NotFound';
 
 // Citizen Pages
@@ -22,10 +23,10 @@ import RequestDetails from '../pages/citizen/RequestDetails';
 import Notifications from '../pages/citizen/Notifications';
 import Profile from '../pages/citizen/Profile';
 
-// Placeholder Pages (Day 2/3 Modules)
-import VolunteerPlaceholder from '../pages/VolunteerPlaceholder';
-import NGOPlaceholder from '../pages/NGOPlaceholder';
-import AdminPlaceholder from '../pages/AdminPlaceholder';
+// Module Dashboards
+import VolunteerDashboard from '../pages/volunteer/VolunteerDashboard';
+import NGODashboard from '../pages/ngo/NGODashboard';
+import AdminDashboard from '../pages/admin/AdminDashboard';
 
 export const AppRoutes = () => {
   return (
@@ -35,14 +36,10 @@ export const AppRoutes = () => {
         <Route path="/" element={<Landing />} />
         <Route path="/how-it-works" element={<HowItWorks />} />
         <Route path="/recovery" element={<Recovery />} />
+        <Route path="/analytics" element={<Analytics />} />
         <Route path="/about" element={<About />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-
-        {/* Placeholders for upcoming modules */}
-        <Route path="/volunteer" element={<VolunteerPlaceholder />} />
-        <Route path="/ngo" element={<NGOPlaceholder />} />
-        <Route path="/admin" element={<AdminPlaceholder />} />
 
         {/* 404 Fallback */}
         <Route path="*" element={<NotFound />} />
@@ -56,6 +53,24 @@ export const AppRoutes = () => {
         <Route path="requests/:id" element={<RequestDetails />} />
         <Route path="notifications" element={<Notifications />} />
         <Route path="profile" element={<Profile />} />
+      </Route>
+
+      {/* Volunteer Dashboard Routes wrapped in DashboardLayout */}
+      <Route path="/volunteer" element={<DashboardLayout />}>
+        <Route index element={<VolunteerDashboard />} />
+        <Route path="*" element={<VolunteerDashboard />} />
+      </Route>
+
+      {/* NGO Dashboard Routes wrapped in DashboardLayout */}
+      <Route path="/ngo" element={<DashboardLayout />}>
+        <Route index element={<NGODashboard />} />
+        <Route path="*" element={<NGODashboard />} />
+      </Route>
+
+      {/* Admin Dashboard Routes wrapped in DashboardLayout */}
+      <Route path="/admin" element={<DashboardLayout />}>
+        <Route index element={<AdminDashboard />} />
+        <Route path="*" element={<AdminDashboard />} />
       </Route>
     </Routes>
   );

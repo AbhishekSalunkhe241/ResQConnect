@@ -12,16 +12,25 @@ import {
   X, 
   ChevronRight,
   ExternalLink,
-  ShieldCheck
+  ShieldCheck,
+  Building2,
+  Users,
+  MapPin,
+  BarChart3,
+  RotateCcw,
+  AlertTriangle
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useRequests } from '../context/RequestContext';
 import Badge from '../components/Badge';
+import Modal from '../components/Modal';
+import Button from '../components/Button';
 
 export const DashboardLayout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [showResetModal, setShowResetModal] = useState(false);
   const { currentUser, role, logout, switchRole } = useAuth();
-  const { unreadNotificationsCount } = useRequests();
+  const { unreadNotificationsCount, resetToDefaultMockData } = useRequests();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -30,23 +39,96 @@ export const DashboardLayout = () => {
     navigate('/login');
   };
 
-  const navItems = [
-    { name: 'Dashboard', path: '/citizen', icon: <LayoutDashboard size={18} />, exact: true },
-    { name: 'Request Help', path: '/citizen/request-help', icon: <PlusCircle size={18} /> },
-    { name: 'My Requests', path: '/citizen/requests', icon: <FileText size={18} /> },
-    { name: 'Notifications', path: '/citizen/notifications', icon: <Bell size={18} />, count: unreadNotificationsCount > 0 ? unreadNotificationsCount : null },
-    { name: 'Profile', path: '/citizen/profile', icon: <User size={18} /> },
-  ];
+  // Determine active view role
+  const activeRole = (() => {
+    if (location.pathname.startsWith('/volunteer')) return 'volunteer';
+    if (location.pathname.startsWith('/ngo')) return 'ngo';
+    if (location.pathname.startsWith('/admin')) return 'admin';
+    if (location.pathname.startsWith('/citizen')) return 'citizen';
+    return role || 'citizen';
+  })();
+
+  // Role-specific navigation items
+  const getNavItems = () => {
+    switch (activeRole) {
+      case 'volunteer':
+        return [
+          { name: 'Task Mobilization', path: '/volunteer', icon: <LayoutDashboard size={18} />, exact: true },
+          { name: 'Recovery Hubs', path: '/recovery', icon: <MapPin size={18} /> },
+          { name: 'Impact Analytics', path: '/analytics', icon: <BarChart3 size={18} /> },
+          { name: 'Notifications', path: '/citizen/notifications', icon: <Bell size={18} />, count: unreadNotificationsCount > 0 ? unreadNotificationsCount : null },
+          { name: 'Profile & Skills', path: '/citizen/profile', icon: <User size={18} /> },
+        ];
+      case 'ngo':
+        return [
+          { name: 'Operations Center', path: '/ngo', icon: <Building2 size={18} />, exact: true },
+          { name: 'Recovery Hubs', path: '/recovery', icon: <MapPin size={18} /> },
+          { name: 'Relief Analytics', path: '/analytics', icon: <BarChart3 size={18} /> },
+          { name: 'Notifications', path: '/citizen/notifications', icon: <Bell size={18} />, count: unreadNotificationsCount > 0 ? unreadNotificationsCount : null },
+          { name: 'Organization Profile', path: '/citizen/profile', icon: <User size={18} /> },
+        ];
+      case 'admin':
+        return [
+          { name: 'Administration Desk', path: '/admin', icon: <ShieldCheck size={18} />, exact: true },
+          { name: 'Recovery Hubs', path: '/recovery', icon: <MapPin size={18} /> },
+          { name: 'Macro Analytics', path: '/analytics', icon: <BarChart3 size={18} /> },
+          { name: 'Notifications', path: '/citizen/notifications', icon: <Bell size={18} />, count: unreadNotificationsCount > 0 ? unreadNotificationsCount : null },
+          { name: 'Console Profile', path: '/citizen/profile', icon: <User size={18} /> },
+        ];
+      case 'citizen':
+      default:
+        return [
+          { name: 'Dashboard', path: '/citizen', icon: <LayoutDashboard size={18} />, exact: true },
+          { name: 'Request Help', path: '/citizen/request-help', icon: <PlusCircle size={18} /> },
+          { name: 'My Requests', path: '/citizen/requests', icon: <FileText size={18} /> },
+          { name: 'Recovery Hubs', path: '/recovery', icon: <MapPin size={18} /> },
+          { name: 'Notifications', path: '/citizen/notifications', icon: <Bell size={18} />, count: unreadNotificationsCount > 0 ? unreadNotificationsCount : null },
+          { name: 'Profile', path: '/citizen/profile', icon: <User size={18} /> },
+        ];
+    }
+  };
+
+  const navItems = getNavItems();
 
   // Get current page title dynamically
   const getPageTitle = () => {
     if (location.pathname.startsWith('/citizen/requests/')) {
       return 'Request Details';
     }
+    if (location.pathname === '/volunteer') return 'Volunteer Task Mobilization';
+    if (location.pathname === '/ngo') return 'NGO Operations Center';
+    if (location.pathname === '/admin') return 'System Administration';
+    if (location.pathname === '/analytics') return 'Recovery Analytics';
+    if (location.pathname === '/recovery') return 'Recovery Hubs & Map';
+
     const current = navItems.find(item => 
       item.exact ? location.pathname === item.path : location.pathname.startsWith(item.path)
     );
-    return current ? current.name : 'Citizen Portal';
+    return current ? current.name : 'ResQConnect Portal';
+  };
+
+  const roleLabelMap = {
+    citizen: 'Citizen Portal',
+    volunteer: 'Volunteer Responder',
+    ngo: 'Relief NGO Partner',
+    admin: 'System Administration'
+  };
+
+  const roleBadgeMap = {
+    citizen: 'teal',
+    volunteer: 'amber',
+    ngo: 'purple',
+    admin: 'slate'
+  };
+
+  const handleRoleSwitch = (newRole) => {
+    switchRole(newRole);
+    navigate(`/${newRole}`);
+  };
+
+  const handleConfirmReset = () => {
+    resetToDefaultMockData();
+    setShowResetModal(false);
   };
 
   return (
@@ -138,11 +220,11 @@ export const DashboardLayout = () => {
             />
             <div style={{ overflow: 'hidden' }}>
               <p style={{ color: '#FFF', fontWeight: 700, fontSize: '0.9rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                {currentUser?.name || 'Rahul Sharma'}
+                {currentUser?.name || 'Demo User'}
               </p>
               <div className="flex items-center gap-1" style={{ marginTop: '0.15rem' }}>
-                <Badge variant="teal" style={{ fontSize: '0.7rem', padding: '0.1rem 0.5rem' }}>
-                  Citizen
+                <Badge variant={roleBadgeMap[activeRole] || 'teal'} style={{ fontSize: '0.7rem', padding: '0.1rem 0.5rem' }}>
+                  {activeRole.toUpperCase()}
                 </Badge>
                 <span style={{ fontSize: '0.75rem', color: '#94A3B8' }}>• Panvel</span>
               </div>
@@ -153,7 +235,7 @@ export const DashboardLayout = () => {
         {/* Sidebar Nav Items */}
         <nav style={{ padding: '1rem 0.75rem', flex: 1, display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
           <p style={{ fontSize: '0.7rem', color: '#64748B', fontWeight: 700, textTransform: 'uppercase', padding: '0.5rem 0.75rem' }}>
-            Navigation
+            {roleLabelMap[activeRole]} Navigation
           </p>
 
           {navItems.map((item) => (
@@ -202,15 +284,47 @@ export const DashboardLayout = () => {
               Public Portals
             </p>
             <Link
+              to="/recovery"
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.75rem',
+                padding: '0.55rem 0.85rem',
+                borderRadius: 'var(--radius-md)',
+                color: '#94A3B8',
+                fontSize: '0.85rem',
+                textDecoration: 'none'
+              }}
+            >
+              <MapPin size={16} />
+              <span>Recovery Hubs & Map</span>
+            </Link>
+            <Link
+              to="/analytics"
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.75rem',
+                padding: '0.55rem 0.85rem',
+                borderRadius: 'var(--radius-md)',
+                color: '#94A3B8',
+                fontSize: '0.85rem',
+                textDecoration: 'none'
+              }}
+            >
+              <BarChart3 size={16} />
+              <span>Disaster Analytics</span>
+            </Link>
+            <Link
               to="/"
               style={{
                 display: 'flex',
                 alignItems: 'center',
                 gap: '0.75rem',
-                padding: '0.65rem 0.85rem',
+                padding: '0.55rem 0.85rem',
                 borderRadius: 'var(--radius-md)',
                 color: '#94A3B8',
-                fontSize: '0.9rem',
+                fontSize: '0.85rem',
                 textDecoration: 'none'
               }}
             >
@@ -220,14 +334,39 @@ export const DashboardLayout = () => {
           </div>
         </nav>
 
-        {/* Sidebar Footer / Logout */}
+        {/* Sidebar Footer / Reset & Logout */}
         <div
           style={{
             padding: '1rem 0.75rem',
             borderTop: '1px solid rgba(255, 255, 255, 0.08)',
-            backgroundColor: 'rgba(0, 0, 0, 0.15)'
+            backgroundColor: 'rgba(0, 0, 0, 0.15)',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '0.5rem'
           }}
         >
+          <button
+            onClick={() => setShowResetModal(true)}
+            style={{
+              width: '100%',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.75rem',
+              padding: '0.55rem 0.85rem',
+              borderRadius: 'var(--radius-md)',
+              backgroundColor: 'rgba(255, 255, 255, 0.05)',
+              border: 'none',
+              color: '#94A3B8',
+              cursor: 'pointer',
+              fontWeight: 500,
+              fontSize: '0.825rem',
+              textAlign: 'left'
+            }}
+          >
+            <RotateCcw size={15} />
+            <span>Reset Demo Data</span>
+          </button>
+
           <button
             onClick={handleLogout}
             style={{
@@ -235,18 +374,18 @@ export const DashboardLayout = () => {
               display: 'flex',
               alignItems: 'center',
               gap: '0.75rem',
-              padding: '0.65rem 0.85rem',
+              padding: '0.55rem 0.85rem',
               borderRadius: 'var(--radius-md)',
               backgroundColor: 'transparent',
               border: 'none',
               color: '#F87171',
               cursor: 'pointer',
               fontWeight: 600,
-              fontSize: '0.9rem',
+              fontSize: '0.85rem',
               textAlign: 'left'
             }}
           >
-            <LogOut size={18} />
+            <LogOut size={16} />
             <span>Logout Session</span>
           </button>
         </div>
@@ -283,25 +422,24 @@ export const DashboardLayout = () => {
           <div className="flex items-center gap-4">
             {/* Quick Role Switcher Pill for Demo */}
             <div className="flex items-center gap-2 md-hidden">
-              <span className="text-xs text-muted font-medium">Demo Role:</span>
+              <span className="text-xs text-muted font-bold uppercase">Role Console:</span>
               <select
-                value={role}
-                onChange={(e) => {
-                  switchRole(e.target.value);
-                  navigate(`/${e.target.value}`);
-                }}
+                value={activeRole}
+                onChange={(e) => handleRoleSwitch(e.target.value)}
                 className="form-select text-xs"
                 style={{
                   padding: '0.25rem 0.65rem',
                   borderRadius: 'var(--radius-full)',
                   borderColor: 'var(--border-default)',
-                  fontWeight: 600
+                  fontWeight: 600,
+                  backgroundColor: '#FFFFFF',
+                  color: 'var(--color-navy-900)'
                 }}
               >
-                <option value="citizen">Citizen (Day 1 Active)</option>
-                <option value="volunteer">Volunteer (Day 2)</option>
-                <option value="ngo">NGO (Day 2)</option>
-                <option value="admin">Admin (Day 3)</option>
+                <option value="citizen">Citizen Portal</option>
+                <option value="volunteer">Volunteer Mobilization</option>
+                <option value="ngo">Relief NGO Operations</option>
+                <option value="admin">System Administration</option>
               </select>
             </div>
 
@@ -354,10 +492,10 @@ export const DashboardLayout = () => {
                 style={{ width: '28px', height: '28px', borderRadius: '50%', objectFit: 'cover' }}
               />
               <span className="text-xs font-semibold md-hidden" style={{ color: 'var(--color-navy-900)' }}>
-                {currentUser?.name?.split(' ')[0] || 'Rahul'}
+                {currentUser?.name?.split(' ')[0] || 'User'}
               </span>
-              <Badge variant="teal" style={{ fontSize: '0.65rem', padding: '0.1rem 0.45rem' }}>
-                Citizen
+              <Badge variant={roleBadgeMap[activeRole] || 'teal'} style={{ fontSize: '0.65rem', padding: '0.1rem 0.45rem' }}>
+                {activeRole.charAt(0).toUpperCase() + activeRole.slice(1)}
               </Badge>
             </Link>
           </div>
@@ -368,6 +506,36 @@ export const DashboardLayout = () => {
           <Outlet />
         </main>
       </div>
+
+      {/* Demo Reset Confirmation Modal */}
+      {showResetModal && (
+        <Modal
+          isOpen={showResetModal}
+          onClose={() => setShowResetModal(false)}
+          title="Reset All Demo Data?"
+          maxWidth="460px"
+          footer={
+            <div className="flex items-center gap-2">
+              <Button variant="secondary" onClick={() => setShowResetModal(false)}>Cancel</Button>
+              <Button variant="primary" style={{ backgroundColor: 'var(--color-danger-main)' }} onClick={handleConfirmReset}>
+                Reset Everything
+              </Button>
+            </div>
+          }
+        >
+          <div>
+            <div className="flex items-center gap-3" style={{ marginBottom: '1rem', color: 'var(--color-warning-text)' }}>
+              <AlertTriangle size={24} style={{ color: 'var(--color-warning-main)', flexShrink: 0 }} />
+              <p style={{ margin: 0, fontSize: '0.9rem', fontWeight: 600 }}>
+                This action will restore all requests, relief inventory, audit logs, and volunteer tasks to their initial seed state.
+              </p>
+            </div>
+            <p className="text-xs text-muted">
+              Useful for presenting fresh demonstrations of the citizen-to-volunteer workflow.
+            </p>
+          </div>
+        </Modal>
+      )}
 
       <style>{`
         @media (max-width: 1024px) {

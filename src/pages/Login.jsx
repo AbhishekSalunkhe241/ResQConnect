@@ -36,7 +36,7 @@ export const Login = () => {
     {
       id: 'citizen',
       label: 'Citizen',
-      tag: 'Day 1 Active',
+      tag: 'Active Portal',
       email: 'rahul.sharma@example.com',
       badgeVariant: 'teal',
       icon: <User size={18} />,
@@ -45,7 +45,7 @@ export const Login = () => {
     {
       id: 'volunteer',
       label: 'Volunteer',
-      tag: 'Day 2',
+      tag: 'Active Mobilization',
       email: 'priya.mehta@example.com',
       badgeVariant: 'amber',
       icon: <Users size={18} />,
@@ -54,16 +54,16 @@ export const Login = () => {
     {
       id: 'ngo',
       label: 'Relief NGO',
-      tag: 'Day 2',
+      tag: 'Active Operations',
       email: 'contact@helpinghands.org',
-      badgeVariant: 'amber',
+      badgeVariant: 'purple',
       icon: <Building2 size={18} />,
       desc: 'Warehouse dispatch, mission logs'
     },
     {
       id: 'admin',
       label: 'Admin',
-      tag: 'Day 3',
+      tag: 'Active Console',
       email: 'admin@resqconnect.org',
       badgeVariant: 'slate',
       icon: <ShieldCheck size={18} />,
