@@ -1,156 +1,70 @@
 # ResQConnect — Post-Disaster Recovery & Coordination Platform
 
-> **"Connect people who need help with people who can provide it."**
+ResQConnect is a frontend demonstration for coordinating post-disaster recovery requests among citizens, relief organizations, volunteers, and an administrative desk. It is a portfolio and college mini project; it is not an emergency dispatch service. For immediate danger, contact local emergency services.
 
-ResQConnect is a humanitarian post-disaster recovery and coordination platform that bridges the critical gap between impacted families, grassroots volunteers, certified NGOs, donors, and verified district authorities during the rehabilitation and recovery phases.
+## Features
 
----
+- Public information pages, demo login, and role switching for citizen, volunteer, NGO, and admin views.
+- Citizen request intake with validation, saved drafts, request tracking, details, and notifications.
+- Shared request workflow with verification, matching, volunteer assignment, progress updates, completion, and audit history.
+- NGO operations view with rule-based request matching, inventory management, and bounded resource allocation.
+- Admin review for accounts and requests, moderation, flags, audit logs, and overview metrics.
+- Recovery hub directory and analytics with CSV export.
 
-## 🌟 Day 1 Architecture & Highlights
+## Technology
 
-This repository contains the **Day 1 Frontend Foundation** of ResQConnect, built with a clean humanitarian aesthetic and scalable architecture.
+React 19, React Router 7, Vite 6, Lucide React, and plain CSS. Shared state is implemented with React Context. The application persists demo requests, users, notifications, resources, audit logs, and recovery hubs in browser localStorage. Data is local to the browser and is not synchronized between devices or users.
 
-- **Humanitarian Design System**: Calibrated palette featuring Deep Navy (`#0F172A`), Ocean Blue (`#0284C7`), Relief Teal (`#0D9488`), and accessible status indicators. Zero generic SaaS templates, no military aesthetics.
-- **Process Visualization**: Explicit lifecycle representation: `Citizen → Request → Verification → Matching → Assistance → Recovery`.
-- **Citizen Recovery Dashboard Shell**:
-  - Live welcome header with localized regional context
-  - 4 Real-time Metric Cards: Active Requests (2), Under Verification (1), In Progress (1), Completed (3)
-  - Quick Actions: *Request Help*, *Track Requests*, *Find Assistance*, *Volunteer*
-  - Recent Requests feed with interactive verification milestone timeline modal
-- **Demo Role Switcher**: Instant switching between **Citizen** (Day 1 Active), **Volunteer** (Day 2), **Relief NGO** (Day 2), and **Admin Desk** (Day 3).
-- **Public Informational Suite**:
-  - Landing Page (`/`): Process visual, 6-step framework, stakeholder roles, trust principles.
-  - How It Works (`/how-it-works`): Comprehensive 6-step breakdown and request status system.
-  - Recovery vs. Emergency (`/recovery`): Clear distinction between golden-hour 112/NDRF rescue and medium-term post-disaster recovery coordination.
-  - About (`/about`): 4 pillars of trust and accredited partner organizations.
-- **Authentication Pages**:
-  - Login (`/login`) with role demo shortcuts and simulated forgot password flow.
-  - Register (`/register`) with role selection and NGO verification notices.
-- **100% Non-Broken Routes**: Unfinished Day 2/3 modules cleanly handled by the reusable `ComingSoon.jsx` component.
+## Project structure
 
----
+- `src/main.jsx`, `src/App.jsx`: application entry and providers
+- `src/routes/AppRoutes.jsx`: route definitions
+- `src/context/`: demo authentication and shared application state/actions
+- `src/data/`: initial mock data
+- `src/pages/`: public pages and citizen, volunteer, NGO, admin, and analytics screens
+- `src/components/`, `src/layouts/`: reusable UI and page layouts
+- `src/index.css`, `src/App.css`: design tokens and styling
 
-## 🧭 Request Status Lifecycle
+## Run locally
 
-Every relief ticket adheres to the standardized 7-stage status system:
-1. `Submitted` — Request logged into ResQConnect registry
-2. `Under Verification` — Field coordinator validating need and household coordinates
-3. `Verified` — Authenticated by local authorities or civil defense desks
-4. `Matched` — Assigned to a qualified partner NGO or mobile relief corps
-5. `Assistance In Progress` — Delivery truck dispatched or medical unit on ground
-6. `Completed` — Handover receipt signed off with photo confirmation
-7. `Closed` — Ticket permanently archived in district records
+Requirements: Node.js 18+ and npm 9+.
 
----
-
-## 🛠️ Technology Stack
-
-- **Framework**: React 19
-- **Build Tool**: Vite 6 (High performance, ESM bundling)
-- **Routing**: React Router 7 (`react-router-dom`)
-- **Icons**: Lucide React (`lucide-react`)
-- **Styling**: Vanilla CSS Design System with custom properties (`src/index.css`)
-- **State Management**: React Context API (`AuthContext`) with `localStorage` persistence
-- **Mock Data**: Centralized recovery requests, users, disasters, and partner NGOs in `src/data/`
-
----
-
-## 📂 Project Structure
-
-```text
-├── index.html                   # HTML entry with humanitarian branding & fonts
-├── package.json                 # Dependencies & project scripts
-├── vite.config.js               # Vite 6 configuration
-├── public/                      # Static assets
-└── src/
-    ├── main.jsx                 # Application DOM root
-    ├── App.jsx                  # Root router & auth provider wrapper
-    ├── index.css                # Humanitarian CSS design system tokens
-    ├── context/
-    │   └── AuthContext.jsx      # Frontend mock session & role switching
-    ├── data/
-    │   ├── mockUsers.js         # Citizen, Volunteer, NGO, Admin profiles
-    │   ├── mockRequests.js      # Post-disaster assistance requests
-    │   ├── mockDisasters.js     # Active disaster operations & recovery principles
-    │   └── mockOrganizations.js # Accredited partner relief NGOs
-    ├── components/
-    │   ├── Navbar.jsx           # Responsive top navigation with mobile drawer
-    │   ├── Footer.jsx           # Platform navigation & emergency disclaimers
-    │   ├── Button.jsx           # Accessible multi-variant action button
-    │   ├── Card.jsx             # Surface card container
-    │   ├── Badge.jsx            # Semantic color badge
-    │   ├── StatusBadge.jsx      # Accessible status indicator with icons
-    │   ├── Input.jsx            # Form input, textarea, and select controls
-    │   ├── StatCard.jsx         # Metric card with visual accent
-    │   ├── PageHeader.jsx       # Header container with actions
-    │   ├── EmptyState.jsx       # Empty view placeholder
-    │   ├── Modal.jsx            # Accessible dialog overlay
-    │   └── ComingSoon.jsx       # Roadmap placeholder for Day 2/3 pages
-    ├── layouts/
-    │   ├── PublicLayout.jsx     # Header + Outlet + Footer
-    │   └── DashboardLayout.jsx  # Collapsible Sidebar + Topbar + Content
-    ├── pages/
-    │   ├── Landing.jsx          # Hero, Process Flow, Stakeholders, Trust
-    │   ├── HowItWorks.jsx       # 6-Step deep dive & status glossary
-    │   ├── Recovery.jsx         # Recovery protocol vs 112 emergency rescue
-    │   ├── About.jsx            # Mission, pillars of trust, partner NGOs
-    │   ├── Login.jsx            # Demo login with role switcher
-    │   ├── Register.jsx         # Registration with role selection
-    │   ├── NotFound.jsx         # 404 handler
-    │   ├── VolunteerPlaceholder.jsx # Day 2 volunteer desk roadmap
-    │   ├── NGOPlaceholder.jsx   # Day 2 NGO desk roadmap
-    │   ├── AdminPlaceholder.jsx # Day 3 admin desk roadmap
-    │   └── citizen/
-    │       ├── CitizenDashboard.jsx # Stats, quick actions, recent requests
-    │       ├── RequestHelp.jsx      # Functional assistance intake form
-    │       ├── MyRequests.jsx       # Searchable, filterable request archive
-    │       ├── Notifications.jsx    # Live alerts on dispatches & verifications
-    │       └── Profile.jsx          # Contact coordinates & verified status
-    └── routes/
-        └── AppRoutes.jsx        # Complete client-side route manifest
-```
-
----
-
-## 🚀 Getting Started
-
-### 1. Prerequisites
-- **Node.js**: v18.0.0 or higher (v20+ recommended)
-- **npm**: v9.0.0 or higher
-
-### 2. Installation
-```bash
+```sh
 npm install
-```
-
-### 3. Development Server
-```bash
 npm run dev
 ```
-Open your browser at `http://localhost:5173` to explore the application.
 
-### 4. Production Build
-```bash
+Vite prints the local URL (usually http://localhost:5173). Production build and lint commands:
+
+```sh
 npm run build
+npm run lint
+npm run preview
 ```
 
----
+## Demo roles and workflow
 
-## 🎯 Testing & Demo Guide
+Open `/login` and use the built-in role shortcuts to switch between demo personas. Role switching is a frontend convenience only; there is no secure authentication or server-side authorization.
 
-1. **Landing Page**: Observe the top active disaster banner, hero process flow, and 6-step recovery blueprint.
-2. **Login / Role Switching**: Go to `/login` and test the **Interactive Demo Role Switcher**:
-   - Select **Citizen** → Access Citizen Dashboard (`/citizen`)
-   - Select **Volunteer** → View Day 2 Volunteer Mobilization roadmap (`/volunteer`)
-   - Select **NGO** → View Day 2 NGO Operations roadmap (`/ngo`)
-   - Select **Admin** → View Day 3 Authority Desk roadmap (`/admin`)
-3. **Citizen Request Interaction**:
-   - Click any request card on the Citizen Dashboard to view the milestone timeline modal.
-   - Click **Submit New Request** or navigate to `/citizen/request-help` to fill and submit a new recovery ticket.
-   - Click **Notifications** to view real-time verification and dispatch alerts.
-4. **Responsive Testing**: Resize viewport to test mobile navigation drawer and adaptive grid cards.
+To demonstrate a recovery workflow, create a request as a citizen; review it in the NGO or admin view and move it through Submitted → Under Verification → Verified → Matched → Assistance In Progress → Completed. Assign an available volunteer from the NGO view or claim a verified, unassigned request in the volunteer view. Add progress notes and complete the task. The same browser's shared state powers the other dashboards and request notifications.
 
----
+NGO matching uses deterministic rules over request priority, category, location, volunteer availability, and inventory fields. It is rule-based matching, not AI or machine learning. Resource allocations require a positive whole quantity, must fit available stock, and cannot repeat the same resource on one request.
 
-## 📜 Academic Note
-Developed for **Mini Project (Semester 5)**. Designed for future integration with Express.js, MongoDB, real-time WebSockets, and GIS mapping without requiring UI rework.
+## Data and reset
+
+Demo data is initialized from `src/data/` and persisted in localStorage. Clearing site data in the browser removes the demo state. The admin dashboard also offers a mock-data reset; it overwrites the current demo state after confirmation. Avoid using that action if you want to retain browser demo records.
+
+## Limitations and future work
+
+- No backend, database, real-time synchronization, secure sign-in, or production access control.
+- No live map or geolocation service; hub locations and demo coordinates are sample data.
+- Notifications and audit records are browser-local demonstration data.
+- A real deployment would need a trusted API, identity and authorization controls, durable storage, operational monitoring, and verified location and partner data.
+
+## Verification status
+
+The source lint check is available with `npm run lint`. The production build requires the Vite dependency to be installed. Build and end-to-end browser flows should be run in an environment with working npm dependencies and browser automation before presenting a release as verified.
+
+## Academic note
+
+Developed for a Computer Engineering Semester 5 mini project.

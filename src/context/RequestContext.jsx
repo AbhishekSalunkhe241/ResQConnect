@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect, useMemo } from 'react';
+import React, { createContext, useContext, useState, useEffect, useMemo, useRef } from 'react';
 import { mockRequests, STATUS_STEPS } from '../data/mockRequests';
 import { mockNotifications } from '../data/mockNotifications';
 import { mockResources } from '../data/mockResources';
@@ -17,13 +17,14 @@ const STORAGE_AUDIT = 'resqconnect_audit_logs_v2';
 const STORAGE_HUBS = 'resqconnect_hubs_v2';
 
 export const RequestProvider = ({ children }) => {
+  const allocationLock = useRef(new Set());
   // Initialize Requests
   const [requests, setRequests] = useState(() => {
     try {
       const saved = localStorage.getItem(STORAGE_REQUESTS);
       if (saved) {
         const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed) && parsed.length > 0) {
+        if (Array.isArray(parsed)) {
           return parsed;
         }
       }
@@ -39,7 +40,7 @@ export const RequestProvider = ({ children }) => {
       const saved = localStorage.getItem(STORAGE_NOTIFICATIONS);
       if (saved) {
         const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed) && parsed.length > 0) {
+        if (Array.isArray(parsed)) {
           return parsed;
         }
       }
@@ -68,7 +69,7 @@ export const RequestProvider = ({ children }) => {
       const saved = localStorage.getItem(STORAGE_RESOURCES);
       if (saved) {
         const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed) && parsed.length > 0) {
+        if (Array.isArray(parsed)) {
           return parsed;
         }
       }
@@ -84,7 +85,7 @@ export const RequestProvider = ({ children }) => {
       const saved = localStorage.getItem(STORAGE_USERS);
       if (saved) {
         const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed) && parsed.length > 0) {
+        if (Array.isArray(parsed)) {
           return parsed;
         }
       }
@@ -100,7 +101,7 @@ export const RequestProvider = ({ children }) => {
       const saved = localStorage.getItem(STORAGE_AUDIT);
       if (saved) {
         const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed) && parsed.length > 0) {
+        if (Array.isArray(parsed)) {
           return parsed;
         }
       }
@@ -116,7 +117,7 @@ export const RequestProvider = ({ children }) => {
       const saved = localStorage.getItem(STORAGE_HUBS);
       if (saved) {
         const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed) && parsed.length > 0) {
+        if (Array.isArray(parsed)) {
           return parsed;
         }
       }
@@ -125,6 +126,10 @@ export const RequestProvider = ({ children }) => {
     }
     return mockRecoveryHubs;
   });
+
+  useEffect(() => {
+    allocationLock.current.clear();
+  }, [resources]);
 
   // Sync to localStorage
   useEffect(() => {
@@ -298,6 +303,10 @@ export const RequestProvider = ({ children }) => {
 
   // Update request status (with timeline and notification)
   const updateRequestStatus = (id, newStatus, customNote = null, actor = 'System Desk') => {
+    const current = requests.find(req => req.id === id);
+    if (!current) return { success: false, error: 'Request not found.' };
+    const transitions = { Submitted: ['Under Verification', 'Rejected'], 'Under Verification': ['Verified', 'Rejected'], Verified: ['Matched', 'Rejected'], Matched: ['Assistance In Progress', 'Rejected'], 'Assistance In Progress': ['Completed'], Completed: ['Closed'] };
+    if (current.status !== newStatus && !(transitions[current.status] || []).includes(newStatus)) return { success: false, error: 'Invalid status transition from ' + current.status + ' to ' + newStatus + '.' };
     const timestampStr = getFormattedNow();
     const now = new Date();
 
@@ -318,7 +327,7 @@ export const RequestProvider = ({ children }) => {
         break;
       case 'Matched':
         notifTitle = 'Request Matched';
-        notifDesc = `Your request ${id} has been matched with Helping Hands Foundation. Assigned volunteer: Priya Mehta.`;
+        notifDesc = `Your request ${id} has been matched with a relief partner.`;
         notifType = 'match';
         break;
       case 'Assistance In Progress':
@@ -387,23 +396,8 @@ export const RequestProvider = ({ children }) => {
           ...req,
           status: newStatus,
           timeline: newTimeline,
-          assignedOrganization: isMatchedOrLater && !req.assignedOrganization
-            ? {
-                id: 'org-1',
-                name: 'Helping Hands Foundation',
-                contactPerson: 'Karan Deshmukh',
-                phone: '+91 22 2745 8890',
-                badge: 'Tier 1 Verified NGO'
-              }
-            : req.assignedOrganization,
-          assignedVolunteer: isMatchedOrLater && !req.assignedVolunteer
-            ? {
-                id: 'vol-1',
-                name: 'Priya Mehta',
-                phone: '+91 98192 33412',
-                badge: 'Certified Responder'
-              }
-            : req.assignedVolunteer,
+          assignedOrganization: req.assignedOrganization,
+          assignedVolunteer: req.assignedVolunteer,
           estimatedAssistance: isMatchedOrLater
             ? (newStatus === 'Completed' || newStatus === 'Closed' ? 'Delivered' : 'Within 24 hours')
             : req.estimatedAssistance
@@ -459,6 +453,10 @@ export const RequestProvider = ({ children }) => {
   // Volunteer Actions
   // ==========================================
   const acceptVolunteerTask = (requestId, volunteerUser) => {
+    const task = requests.find(req => req.id === requestId);
+    if (!task) return { success: false, error: 'Task not found.' };
+    const isAlreadyAssignedToVolunteer = task.assignedVolunteer?.id === volunteerUser?.id || task.assignedVolunteer?.name === volunteerUser?.name;
+    if (!['Verified', 'Matched'].includes(task.status) || (task.assignedVolunteer && !isAlreadyAssignedToVolunteer)) return { success: false, error: 'This task is no longer available to claim.' };
     const timestampStr = getFormattedNow();
     const volunteerName = volunteerUser?.name || 'Priya Mehta';
     const volunteerPhone = volunteerUser?.phone || '+91 98192 33412';
@@ -517,6 +515,9 @@ export const RequestProvider = ({ children }) => {
   };
 
   const addVolunteerCheckIn = (requestId, note, volunteerName = 'Volunteer') => {
+    const task = requests.find(req => req.id === requestId);
+    if (!task || task.status !== 'Assistance In Progress' || !task.assignedVolunteer) return { success: false, error: 'Only an assigned, active task can receive a progress update.' };
+    if (!String(note || '').trim()) return { success: false, error: 'Add a progress note before submitting.' };
     const timestampStr = getFormattedNow();
 
     setRequests(prev =>
@@ -566,6 +567,8 @@ export const RequestProvider = ({ children }) => {
   };
 
   const completeVolunteerTask = (requestId, completionNote, proofDescription, volunteerUser) => {
+    const task = requests.find(req => req.id === requestId);
+    if (!task || task.status !== 'Assistance In Progress' || !task.assignedVolunteer) return { success: false, error: 'Only an assigned, active task can be completed.' };
     const timestampStr = getFormattedNow();
     const volunteerName = volunteerUser?.name || 'Volunteer';
 
@@ -627,8 +630,12 @@ export const RequestProvider = ({ children }) => {
   // NGO Operations Actions
   // ==========================================
   const assignVolunteerToRequest = (requestId, volunteerId, volunteerName, ngoName = 'Helping Hands Foundation') => {
-    const timestampStr = getFormattedNow();
+    const task = requests.find(req => req.id === requestId);
     const vol = usersList.find(u => u.id === volunteerId);
+    if (!task) return { success: false, error: 'Request not found.' };
+    if (!['Verified', 'Matched'].includes(task.status) || task.assignedVolunteer) return { success: false, error: 'This request is not available for volunteer assignment.' };
+    if (!vol || vol.role !== 'volunteer' || vol.status !== 'Available') return { success: false, error: 'Select an available volunteer.' };
+    const timestampStr = getFormattedNow();
 
     setRequests(prev =>
       prev.map(req => {
@@ -746,79 +753,30 @@ export const RequestProvider = ({ children }) => {
 
   const allocateResource = (requestId, resourceId, quantityToAllocate, actorName = 'Helping Hands Foundation') => {
     const targetResource = resources.find(r => r.id === resourceId);
-    if (!targetResource) return { success: false, error: 'Resource not found' };
-
-    const qty = Number(quantityToAllocate) || 1;
-    if (targetResource.quantity < qty) {
-      return { success: false, error: `Insufficient inventory: only ${targetResource.quantity} available` };
-    }
-
-    // Deduct from inventory
+    if (!targetResource) return { success: false, error: 'Resource not found.' };
+    const request = requests.find(r => r.id === requestId);
+    if (!request) return { success: false, error: 'Request not found.' };
+    if (targetResource.unavailable || targetResource.status === 'Unavailable') return { success: false, error: 'This resource is unavailable.' };
+    const qty = Number(quantityToAllocate);
+    if (!Number.isSafeInteger(qty) || qty <= 0) return { success: false, error: 'Enter a whole quantity greater than zero.' };
+    if ((request.allocatedResources || []).some(item => item.resourceId === resourceId)) return { success: false, error: 'This resource has already been allocated to the request.' };
+    if (allocationLock.current.has(resourceId)) return { success: false, error: 'This allocation is already being processed.' };
+    allocationLock.current.add(resourceId);
+    if (targetResource.quantity < qty) return { success: false, error: 'Insufficient inventory: only ' + targetResource.quantity + ' available.' };
     const remainingQty = targetResource.quantity - qty;
-    let status = 'In Stock';
-    if (remainingQty === 0) status = 'Critical';
-    else if (remainingQty <= targetResource.minThreshold) status = 'Low Stock';
-
-    setResources(prev =>
-      prev.map(r => (r.id === resourceId ? { ...r, quantity: remainingQty, status, lastUpdated: getFormattedNow() } : r))
-    );
-
-    // Record allocation onto request
+    const status = remainingQty === 0 ? 'Critical' : remainingQty <= targetResource.minThreshold ? 'Low Stock' : 'In Stock';
+    setResources(prev => prev.map(r => r.id === resourceId ? { ...r, quantity: remainingQty, status, lastUpdated: getFormattedNow() } : r));
     const timestampStr = getFormattedNow();
-    setRequests(prev =>
-      prev.map(req => {
-        if (req.id !== requestId) return req;
-
-        const allocations = req.allocatedResources ? [...req.allocatedResources] : [];
-        allocations.push({
-          resourceId,
-          resourceName: targetResource.name,
-          category: targetResource.category,
-          quantity: qty,
-          unit: targetResource.unit,
-          location: targetResource.location,
-          timestamp: timestampStr
-        });
-
-        const updatedTimeline = [
-          ...(req.timeline || []),
-          {
-            step: 'Resource Allocated',
-            timestamp: timestampStr,
-            note: `Allocated ${qty} ${targetResource.unit} of ${targetResource.name} from ${targetResource.location}.`
-          }
-        ];
-
-        return {
-          ...req,
-          allocatedResources: allocations,
-          timeline: updatedTimeline
-        };
-      })
-    );
-
-    // Citizen notification
-    setNotifications(prev => [
-      {
-        id: `notif-${Date.now()}`,
-        requestId,
-        type: 'progress',
-        title: 'Relief Resources Allocated',
-        desc: `${qty} ${targetResource.unit} of ${targetResource.name} allocated from warehouse depot for your request.`,
-        time: 'Just now',
-        timestamp: new Date().toISOString(),
-        unread: true
-      },
-      ...prev
-    ]);
-
-    addAuditLog('RESOURCE_ALLOCATION', requestId, 'Relief Inventory', `Allocated ${qty} ${targetResource.unit} of ${targetResource.name} to ${requestId}`, actorName, 'ngo');
+    setRequests(prev => prev.map(req => req.id !== requestId ? req : {
+      ...req,
+      allocatedResources: [...(req.allocatedResources || []), { resourceId, resourceName: targetResource.name, category: targetResource.category, quantity: qty, unit: targetResource.unit, location: targetResource.location, timestamp: timestampStr }],
+      timeline: [...(req.timeline || []), { step: 'Resource Allocated', timestamp: timestampStr, note: 'Allocated ' + qty + ' ' + targetResource.unit + ' of ' + targetResource.name + ' from ' + targetResource.location + '.' }]
+    }));
+    setNotifications(prev => [{ id: 'notif-' + Date.now(), requestId, type: 'progress', title: 'Relief Resources Allocated', desc: qty + ' ' + targetResource.unit + ' of ' + targetResource.name + ' allocated to your request.', time: 'Just now', timestamp: new Date().toISOString(), unread: true }, ...prev]);
+    addAuditLog('RESOURCE_ALLOCATION', requestId, 'Relief Inventory', 'Allocated ' + qty + ' ' + targetResource.unit + ' of ' + targetResource.name + ' to ' + requestId, actorName, 'ngo');
     return { success: true, remaining: remainingQty };
   };
 
-  // ==========================================
-  // Admin Verification & Moderation Actions
-  // ==========================================
   const verifyUser = (userId, notes = '', adminName = 'System Administrator') => {
     setUsersList(prev =>
       prev.map(u => (u.id === userId ? { ...u, verified: true, pendingVerification: false, verificationNotes: notes } : u))

@@ -191,8 +191,10 @@ export const AdminDashboard = () => {
       verifyUser(item.id, 'Credential accreditation validated by administrative desk.', currentUser?.name || 'System Admin');
       showNotification(`Approved and verified ${item.title} credentials.`);
     } else if (item.queueType === 'request') {
-      updateRequestStatus(item.id, 'Verified', 'Request verified by central administrative desk triage.', currentUser?.name || 'System Admin');
-      showNotification(`Request ${item.id} verified and moved to relief matching.`);
+      const nextStatus = item.raw.status === 'Submitted' ? 'Under Verification' : 'Verified';
+      const result = updateRequestStatus(item.id, nextStatus, 'Request reviewed by central administrative desk.', currentUser?.name || 'System Admin');
+      if (result?.success === false) showNotification(result.error, 'danger');
+      else showNotification(`Request ${item.id} advanced to ${nextStatus}.`);
     }
     if (viewDetailModal?.data?.id === item.id) setViewDetailModal(null);
   };

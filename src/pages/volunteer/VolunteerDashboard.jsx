@@ -77,7 +77,7 @@ export const VolunteerDashboard = () => {
       r.status !== 'Completed' && 
       r.status !== 'Closed' &&
       r.status !== 'Rejected' &&
-      (r.status === 'Verified' || r.status === 'Submitted' || r.status === 'Under Verification' || (r.status === 'Matched' && !r.assignedVolunteer))
+      (r.status === 'Verified' || (r.status === 'Matched' && !r.assignedVolunteer))
     );
   }, [requests, currentUser]);
 
@@ -116,7 +116,11 @@ export const VolunteerDashboard = () => {
 
   // Handlers
   const handleAcceptTask = (task) => {
-    acceptVolunteerTask(task.id, currentUser || { name: 'Priya Mehta', id: 'user-v1', phone: '+91 98192 33412', badge: 'Certified Responder' });
+    const result = acceptVolunteerTask(task.id, currentUser || { name: 'Priya Mehta', id: 'user-v1', phone: '+91 98192 33412', badge: 'Certified Responder' });
+    if (result?.success === false) {
+      showFeedback(result.error, 'danger');
+      return;
+    }
     showFeedback(`Task ${task.id} accepted! Status moved to In Progress.`, 'success');
     if (selectedTask?.id === task.id) setSelectedTask(null);
   };

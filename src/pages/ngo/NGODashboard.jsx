@@ -259,8 +259,14 @@ export const NGODashboard = () => {
 
   // Handlers
   const handleAcceptRequest = (req) => {
-    updateRequestStatus(req.id, 'Matched', 'Relief request accepted by NGO operations desk. Resources being marshaled.', currentUser?.name || 'Helping Hands Foundation');
-    showNotification(`Request ${req.id} accepted! Status advanced to Matched.`);
+    const nextStatus = { Submitted: 'Under Verification', 'Under Verification': 'Verified', Verified: 'Matched' }[req.status];
+    if (!nextStatus) {
+      showNotification('This request cannot be advanced from its current status.', 'danger');
+      return;
+    }
+    const result = updateRequestStatus(req.id, nextStatus, 'Reviewed by NGO operations desk.', currentUser?.name || 'Helping Hands Foundation');
+    if (result?.success === false) showNotification(result.error, 'danger');
+    else showNotification(`Request ${req.id} advanced to ${nextStatus}.`);
   };
 
   const handleOpenAssignModal = (req) => {
@@ -271,7 +277,11 @@ export const NGODashboard = () => {
   const handleConfirmAssign = () => {
     if (!selectedVolunteerId) return;
     const vol = volunteers.find(v => v.id === selectedVolunteerId);
-    assignVolunteerToRequest(assignModalData.id, selectedVolunteerId, vol?.name, currentUser?.name || 'Helping Hands Foundation');
+    const result = assignVolunteerToRequest(assignModalData.id, selectedVolunteerId, vol?.name, currentUser?.name || 'Helping Hands Foundation');
+    if (result?.success === false) {
+      showNotification(result.error, 'danger');
+      return;
+    }
     showNotification(`Assigned ${vol?.name} to ${assignModalData.id}`);
     setAssignModalData(null);
   };
@@ -774,7 +784,7 @@ export const NGODashboard = () => {
 
                             {req.status !== 'Completed' && req.status !== 'Rejected' && (
                               <>
-                                {(!req.assignedVolunteer) && (
+                                {(!req.assignedVolunteer && ['Verified', 'Matched'].includes(req.status)) && (
                                   <Button 
                                     variant="teal" 
                                     size="sm"
